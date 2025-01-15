@@ -7,6 +7,7 @@ SRCS = main.c \
 	   archer_atof.c \
 	   check_object.c \
 	   check_object_utils.c \
+	   init_prog.c \
 	   setup_color.c \
 	   setup_orientation.c \
 	   setup_coord.c \

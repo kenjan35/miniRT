@@ -6,7 +6,7 @@
 /*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 09:08:08 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:14:10 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ typedef struct s_object
 	float		size[2];
 }	t_object;
 
-typedef struct s_program
+typedef struct s_prog
 {
+	void		*mlx;
+	void		*mlx_win;
 	t_list		*obj;
-}	t_program;
+}	t_prog;
 
 /************ tools *************/
 
@@ -76,6 +78,7 @@ void	set_data(char *file, t_list **list);
 void	init_nbr_element(int nbr[]);
 int		check_element(t_list **list);
 void	set_nbr_element(int nbr[], t_object *obj);
+int		init_prog(t_prog *prog);
 
 /************ color *************/
 
@@ -100,5 +103,9 @@ int		check_light(char **split, t_object *obj);
 int		check_sphere(char **split, t_object *obj);
 int		check_plane(char **split, t_object *obj);
 int		check_cylinder(char **split, t_object *obj);
+
+/************ window *************/
+
+int		quit_window(t_prog *obj);
 
 #endif

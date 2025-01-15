@@ -6,7 +6,7 @@
 /*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 09:06:03 by atolojan          #+#    #+#             */
-/*   Updated: 2024/08/02 13:12:21 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/15 08:39:40 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+
+# include "get_next_line.h"
 
 typedef struct s_list
 {
@@ -75,5 +77,7 @@ int		put_hex_low(unsigned int n);
 int		put_hex_upp(unsigned int n);
 int		get_value(char c, va_list *ptr);
 int		ft_printf(const char *s, ...);
+
+char	**arc_split(char const *s);
 
 #endif

@@ -1,8 +1,19 @@
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
-CC = gcc $(CFLAGS)
+CC = cc $(CFLAGS)
 
-SRCS = 
+SRCS = main.c \
+	   open_file.c \
+	   archer_atof.c \
+	   check_object.c \
+	   check_object_utils.c \
+	   setup_color.c \
+	   setup_orientation.c \
+	   setup_coord.c \
+	   check_obj1.c \
+	   check_obj2.c \
+	   free_array.c \
+	   print_error.c \
 
 OBJS = ${SRCS:.c=.o}
 
@@ -16,9 +27,10 @@ MLXF = -L$(MLX) -lXext -lX11 -lm
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT)
+	@make bonus -C inc/libft
 	@make -C inc/minilibx-linux
-	$(CC) -o $(NAME) $(OBJ) inc/minilibx-linux/libmlx.a $(LIBFT) -I $(MLXF)
+	$(CC) -o $(NAME) $(OBJS) inc/minilibx-linux/libmlx.a $(LIBFT) -I $(MLXF)
 
 $(LIBFT):
 	@make -C inc/libft/
@@ -27,7 +39,7 @@ $(LIBFT):
 	$(CC) -o $@ -c $< ${<.c=.o}
 
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(OBJS)
 	@make clean -C inc/libft/
 
 fclean: clean

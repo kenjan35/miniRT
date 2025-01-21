@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   setup_orientation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:24:01 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 08:23:26 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:21:59 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minirt.h"
+#include "../../inc/minirt.h"
 
 void	set_orient(t_object *obj, char **str)
 {

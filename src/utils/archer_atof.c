@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   archer_atof.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 08:38:47 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 08:19:11 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:22:18 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minirt.h"
+#include "../../inc/minirt.h"
 
 static void	set_sign(const char *nptr, int *i, int *sign)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_obj1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:31:12 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 08:21:33 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:19:58 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int	check_ambient(char **split, t_object *obj)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:12:22 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 09:08:18 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:23:02 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minirt.h"
+#include "../../inc/minirt.h"
 
 void	print_error(int cipher, void *ptr)
 {

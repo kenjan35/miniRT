@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   open_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:32:08 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 08:33:01 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:22:51 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int	open_fd(char *file)
 {

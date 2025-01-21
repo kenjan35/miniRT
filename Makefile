@@ -44,7 +44,8 @@ $(NAME): $(OBJS) $(LIBFT)
 $(LIBFT):
 	@make -C inc/libft/
 
-.c.o:
+$(OBJ_DIR)%.o : %.c
+	@mkdir -p '$(@D)'
 	$(CC) -o $@ -c $< ${<.c=.o}
 
 clean:

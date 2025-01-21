@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_object.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 13:32:38 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 09:08:10 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:20:58 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int	get_size(char *other, float max)
 {

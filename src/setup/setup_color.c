@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   setup_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:12:55 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 08:20:33 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:21:27 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minirt.h"
+#include "../../inc/minirt.h"
 
 void	set_color(t_object *obj, char **str)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_prog.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:49:23 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 16:14:59 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:21:16 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minirt.h"
+#include "../../inc/minirt.h"
 
 int	quit_window(t_prog *prog)
 {

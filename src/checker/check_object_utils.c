@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_object_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 07:39:33 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 09:08:14 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:20:40 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "inc/minirt.h"
+#include "../../inc/minirt.h"
 
 void	init_nbr_element(int nbr[])
 {

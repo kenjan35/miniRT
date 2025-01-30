@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 16:14:10 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:36:32 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define BUFFER_SIZE 42
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
-# define CYAN "\033[1;36m"
+# define CYAN "\033[1;96m"
 # define RESET "\033[0m"
 
 # include "./minilibx-linux/mlx.h"

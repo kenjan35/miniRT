@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:49:23 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/30 15:25:54 by maandria         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:35:52 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	init_prog(t_prog *prog)
 	prog->mlx = mlx_init();
 	if (!prog->mlx)
 		return (0);
-	prog->mlx_win = mlx_new_window(prog->mlx, 1600, 900, "miniRT");
+	prog->mlx_win = mlx_new_window(prog->mlx, WIN_LENGTH, WIN_WIDTH, "miniRT");
 	if (!prog->mlx_win)
 	{
 		mlx_destroy_display(prog->mlx);

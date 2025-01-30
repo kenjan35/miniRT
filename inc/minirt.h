@@ -6,13 +6,15 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/30 15:36:32 by maandria         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:35:28 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 # define BUFFER_SIZE 42
+# define WIN_LENGTH 1600
+# define WIN_WIDTH 800
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
 # define CYAN "\033[1;96m"

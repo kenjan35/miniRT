@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antanana      +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/15 16:14:15 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:37:45 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,45 @@ void	check_file(char *av)
 		print_error(3, NULL);
 		exit(1);
 	}
+}
+
+t_object	*find_id(t_prog *prog, char *id)
+{
+	t_prog		*tmp;
+	t_object	*object;
+
+	tmp = prog;
+	object = tmp->obj->content;
+	while (tmp->obj->next)
+	{
+		if (ft_strncmp(object->id, id, ft_strlen(id)) == 0)
+			return (object);
+		else
+		{
+			tmp->obj = tmp->obj->next;
+			object = tmp->obj->content;
+		}
+	}
+	if (ft_strncmp(object->id, id, ft_strlen(id)) == 0)
+		return (object);
+	else
+		return (NULL);
+}
+
+void	check_list(t_prog *prog)
+{
+	t_prog		*tmp;
+	t_object	*object;
+
+	tmp = prog;
+	while (tmp->obj->next)
+	{
+			object = tmp->obj->content;
+			printf("Id : %s\n", object->id);
+			tmp->obj = tmp->obj->next;
+	}
+	object = tmp->obj->content;
+	printf("Id : %s\n", object->id);
 }
 
 int	main(int ac, char *av[])
@@ -48,6 +87,13 @@ int	main(int ac, char *av[])
 		ft_putstr_fd(RED "Error :\nWrong number of element\n" RESET, 2);
 		exit(1);
 	}
+	// check_list(&prog);
+	// char	*str = "cy";
+	// t_object	*o = find_id(&prog, str);
+	// if (o == NULL)
+	// 	printf(RED "No match for \"%s\" id\n" RESET, str);
+	// else
+	// 	printf(CYAN "id : %s valid\n" RESET, o->id);
 	mlx_hook(prog.mlx_win, 17, 1L << 0, quit_window, &prog);
 	mlx_loop(prog.mlx);
 	return (0);

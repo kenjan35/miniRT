@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/30 15:37:45 by maandria         ###   ########.fr       */
+/*   Updated: 2025/01/30 16:09:34 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ int	main(int ac, char *av[])
 		ft_putstr_fd(RED "Error :\nWrong number of element\n" RESET, 2);
 		exit(1);
 	}
-	// check_list(&prog);
-	// char	*str = "cy";
-	// t_object	*o = find_id(&prog, str);
-	// if (o == NULL)
-	// 	printf(RED "No match for \"%s\" id\n" RESET, str);
-	// else
-	// 	printf(CYAN "id : %s valid\n" RESET, o->id);
+	check_list(&prog);
+	char	*str = "cy";
+	t_object	*o = find_id(&prog, str);
+	if (o == NULL)
+		printf(RED "No match for \"%s\" id\n" RESET, str);
+	else
+		printf(CYAN "id : %s valid\n" RESET, o->id);
 	mlx_hook(prog.mlx_win, 17, 1L << 0, quit_window, &prog);
 	mlx_loop(prog.mlx);
 	return (0);

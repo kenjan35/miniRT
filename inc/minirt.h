@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/30 16:35:28 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:56:37 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define BUFFER_SIZE 42
 # define WIN_LENGTH 1600
 # define WIN_WIDTH 800
+# define PI 3.1415
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
 # define CYAN "\033[1;96m"
@@ -48,6 +49,7 @@ typedef struct s_coord
 	float	z;
 }	t_coord;
 
+
 typedef struct s_object
 {
 	char		id[3];
@@ -64,15 +66,33 @@ typedef struct s_prog
 	t_list		*obj;
 }	t_prog;
 
+
+typedef struct	s_viewpoint
+{
+	float	length;
+	float	width;
+}	t_viewpoint;
+
+typedef struct s_pixelco
+{
+	float	u;
+	float	v;
+}	t_pixelco;
+
 /************ tools *************/
 
-int		open_fd(char *file);
-char	**get_line(int fd);
-int		get_size(char *other, float max);
-float	arc_atof(const char *nptr);
-void	free_array(char **split);
-void	free_object(t_object *obj);
-void	print_error(int cipher, void *ptr);
+int			open_fd(char *file);
+char		**get_line(int fd);
+int			get_size(char *other, float max);
+float		arc_atof(const char *nptr);
+void		free_array(char **split);
+void		free_object(t_object *obj);
+void		print_error(int cipher, void *ptr);
+t_object	*find_id(t_prog *prog, char *id);
+
+/************ config *************/
+
+t_viewpoint	mr_camera_init(float n, t_prog *prog);
 
 /************ data *************/
 

@@ -6,7 +6,7 @@ OBJ_DIR = objs/
 
 SRC_MAIN = main.c
 
-SRC_SETUP = $(addprefix src/setup/, setup_color.c setup_orientation.c setup_coord.c)
+SRC_SETUP = $(addprefix src/setup/, setup_color.c setup_orientation.c setup_coord.c setup_camera.c)
 
 SRC_CHECKER = $(addprefix src/checker/, check_object.c check_object_utils.c check_obj1.c check_obj2.c)
 

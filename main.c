@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/02/05 13:38:40 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:21:24 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,25 @@ int	main(int ac, char *av[])
 		ft_putstr_fd(RED "Error :\nWrong number of element\n" RESET, 2);
 		exit(1);
 	}
-	t_viewpoint view;
+	t_viewport view;
 
 	view = mr_camera_init(1, &prog);
 	printf(CYAN "Camera viewpoint : " RESET);
 	printf("length = %f\twidth = %f\n", view.length, view.width);
+	t_coord	px_position;
+	int	x = 0;
+	int	y = 0;
+	while (y < (int)WIN_LENGTH)
+	{
+		while (x < (int)WIN_WIDTH)
+		{
+			px_position = mr_pixel_position(&prog, view, x, y);
+			printf("Position : x = %f , y = %f , z = %f\n\n", px_position.x, px_position.y, px_position.z);
+			x++;
+		}
+		x = 0;
+		y++;
+	}
 	mlx_hook(prog.mlx_win, 17, 1L << 0, quit_window, &prog);
 	mlx_loop(prog.mlx);
 	return (0);

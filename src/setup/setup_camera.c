@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:58:32 by maandria          #+#    #+#             */
-/*   Updated: 2025/02/10 17:23:13 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/12 16:12:07 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,46 @@ t_viewport	mr_camera_init(float n, t_prog *prog)
 	return (view);
 }
 
+t_coord	orient2coord(t_orient *orient)
+{
+	t_coord	result;
+
+	result.x = orient->or_x;
+	result.y = orient->or_y;
+	result.z = orient->or_z;
+	return (result);
+}
+
 t_coord	mr_pixel_position(t_prog *prog, t_viewport view, int x, int y)
 {
+	t_coord		p_cam;
 	t_coord		orient_cam;
 	t_coord		position_px;
-	t_object	position_cam;
+	t_object	*position_cam;
+	t_coord		result;
+	t_camunit	cam;
 
 	position_cam = find_id(prog, "C");
-	orient_cam = position_cam.coord;
+	position_px.x = position_cam->coord->x;
+	position_px.y = position_cam->coord->y;
+	position_px.z = position_cam->coord->z;
+	cam.c_avant = orient2coord(position_cam->orient);
+	p_cam = position_px;
+	if (cam.c_avant.z < 0 && cam.c_avant.y == 0 && cam.c_avant.x == 0)
+	{
+		orient_cam = (t_coord){0, -1, 0};
+		cam.c_haut = op_pro_vect(cam.c_avant,orient_cam);
+	}
+	else if (cam.c_avant.z > 0 && cam.c_avant.y == 0 && cam.c_avant.x == 0)
+	{
+		orient_cam = (t_coord){0, 1, 0};
+		cam.c_haut = op_pro_vect(cam.c_avant, orient_cam);
+	}
+	else if (cam.c_avant.z && cam.c_avant.x && cam.c_avant.y ==0)
+	{
+		orient_cam = (t_coord){0, 1, 0};
+		cam.c_haut = op_pro_vect(cam.c_avant, orient_cam);
+	}
+	result = op_position_px(p_cam, view, cam, x, y);
+	return (result);
 }

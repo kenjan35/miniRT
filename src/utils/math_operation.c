@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:39:36 by maandria          #+#    #+#             */
-/*   Updated: 2025/02/12 16:17:41 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:35:28 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_coord	op_vector_addition(t_coord u, t_coord v)
 	return (result);
 }
 
-t_coord	op_vect_n_lamda(int x, t_coord u)
+t_coord	op_vect_n_lamda(float x, t_coord u)
 {
 	t_coord	result;
 
@@ -77,6 +77,11 @@ t_coord	op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, int x, in
 
 	u = op_vpixel_unit(view, cam.c_avant, cam.c_haut, 0);
 	v = op_vpixel_unit(view, cam.c_avant, u, 1);
-	result = op_vector_addition(op_vector_addition(op_vector_addition(pos_cam, cam.c_avant), op_vector_use(u, v, view)), op_vector_addition(op_vect_n_lamda(x, u), op_vect_n_lamda(y, v)));
+	result = (t_coord){0, 0, 0};
+	result = op_vector_addition(result, pos_cam);
+	result = op_vector_addition(result, cam.c_avant);
+	result = op_vector_addition(result, op_vector_use(u, v, view));
+	result = op_vector_addition(result, op_vect_n_lamda(x, u));
+	result = op_vector_addition(result, op_vect_n_lamda(y, v)); 
 	return (result);
 }

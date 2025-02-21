@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:58:32 by maandria          #+#    #+#             */
-/*   Updated: 2025/02/20 13:34:56 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/21 12:31:01 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,15 @@ t_coord	mr_pixel_position(t_prog *prog, t_viewport view, int x, int y)
 	cam.c_avant = orient2coord(position_cam->orient);
 	p_cam = position_px;
 	tmp = (t_coord){0, 0, 1};
-	if (cam.c_avant.z < 0 && cam.c_avant.y == 0 && cam.c_avant.x == 0)
-	{
-		orient_cam = (t_coord){0, -1, 0};
-		cam.c_haut = op_pro_vect(cam.c_avant,orient_cam);
-	}
-	else if (cam.c_avant.z > 0 && cam.c_avant.y == 0 && cam.c_avant.x == 0)
-	{
-		orient_cam = (t_coord){0, 1, 0};
-		cam.c_haut = op_pro_vect(cam.c_avant, orient_cam);
-	}
-	else if (cam.c_avant.z && cam.c_avant.x && cam.c_avant.y == 0)
+	if (cam.c_avant.x && !cam.c_avant.y && !cam.c_avant.z)
+		cam.c_haut = (t_coord){0, 0, 1};
+	else if (cam.c_avant.y && !cam.c_avant.x && !cam.c_avant.z)
+		cam.c_haut = (t_coord){0, 0, 1};
+	else if (cam.c_avant.z < 0 && !cam.c_avant.y && !cam.c_avant.x)
+		cam.c_haut = (t_coord){1, 0, 0};
+	else if (cam.c_avant.z > 0 && !cam.c_avant.y && !cam.c_avant.x)
+		cam.c_haut = (t_coord){-1, 0, 0};
+	else if (cam.c_avant.z && cam.c_avant.x && !cam.c_avant.y)
 	{
 		orient_cam = (t_coord){0, 1, 0};
 		cam.c_haut = op_pro_vect(cam.c_avant, orient_cam);
@@ -74,10 +72,6 @@ t_coord	mr_pixel_position(t_prog *prog, t_viewport view, int x, int y)
 		orient_cam = (t_coord){1, 0, 0};
 		cam.c_haut = op_pro_vect(cam.c_avant, orient_cam);
 	}
-	else if (cam.c_avant.x && !cam.c_avant.y && !cam.c_avant.z)
-		cam.c_haut = (t_coord){0, 0, 1};
-	else if (cam.c_avant.y && !cam.c_avant.x && !cam.c_avant.z)
-		cam.c_haut = (t_coord){0, 0, 1};
 	result = op_position_px(p_cam, view, cam, x, y);
 	return (result);
 }

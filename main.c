@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/02/20 13:53:52 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:00:44 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,17 +95,25 @@ int	main(int ac, char *av[])
 	t_coord	px_position;
 	int	x = 0;
 	int	y = 0;
-	// while (y < 10)
-	// {
-		while (x < (WIN_LENGTH / 10))
+	while (y < WIN_WIDTH)
+	{
+		while (x < (WIN_LENGTH))
 		{
 			px_position = mr_pixel_position(&prog, view, x, y);
-			printf("\nPosition : x = %f , y = %f , z = %f\n\n", px_position.x, px_position.y, px_position.z);
+			if (x == WIN_LENGTH / 2 && y == WIN_WIDTH / 2)
+				{
+					int	j = (int)px_position.y;
+					int	k = (int)px_position.z;
+					printf("\nPosition : x = %f , y = %f , z = %f\n\n", px_position.x, px_position.y, px_position.z);
+					printf("\nj = %d, k = %d\n\n", j, k);
+					mlx_pixel_put(prog.mlx, prog.mlx_win, j, k, 0xff0000);
+					mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, 0x00ff00);
+				}
 			x++;
 		}
-	// 	x = 0;
-	// 	y++;
-	// }
+		x = 0;
+		y++;
+	}
 	mlx_hook(prog.mlx_win, 17, 1L << 0, quit_window, &prog);
 	mlx_loop(prog.mlx);
 	return (0);

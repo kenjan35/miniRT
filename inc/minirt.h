@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/02/12 16:00:11 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/21 13:35:52 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ float		op_norm(t_coord u);
 float		op_norm_pv(t_coord u, t_coord v, float teta);
 t_coord		op_pro_vect(t_coord u, t_coord v);
 t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
-t_coord		op_vector_use(t_coord u, t_coord v, t_viewport view);
+t_coord		op_vector_use(t_coord u, t_coord v);
 t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, int x, int y);
 
 #endif

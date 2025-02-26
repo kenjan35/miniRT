@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:49:20 by maandria          #+#    #+#             */
-/*   Updated: 2025/02/11 14:40:09 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:58:17 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,22 @@ float	op_norm(t_coord u)
 	return (result);
 }
 
+t_coord	op_vector_addition(t_coord u, t_coord v)
+{
+	t_coord	result;
+	
+	result.x = u.x + v.x;
+	result.y = u.y + v.y;
+	result.z = u.z + v.z;
+	return (result);
+}
+
+t_coord	op_vect_n_lamda(float x, t_coord u)
+{
+	t_coord	result;
+
+	result.x = x * u.x;
+	result.y = x * u.y;
+	result.z = x * u.z;
+	return (result);
+}

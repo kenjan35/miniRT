@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:49:23 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/30 16:35:52 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:08:42 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,16 @@ int	init_prog(t_prog *prog)
 	}
 	prog->obj = NULL;
 	return (1);
+}
+
+int	key_close(int key, t_prog *prog)
+{
+	if (key == 65307)
+	{
+		mlx_destroy_window(prog->mlx, prog->mlx_win);
+		mlx_destroy_display(prog->mlx);
+		free(prog->mlx);
+		exit(0);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/02/21 14:00:44 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:45:02 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,45 @@ void	check_list(t_prog *prog)
 	printf("Id : %s\n", object->id);
 }
 
+int	gradient(int y)
+{
+	int	color;
+	int	r;
+	int	g;
+	int	b;
+	r = 0;
+	g = 0;
+	b = (y * 255) / WIN_WIDTH;
+	color = (r << 16) | (g << 8) | b;
+	return (color);
+}
+
+void	draw_gradient(t_prog *prog)
+{
+	int		*data;
+	int		color;
+	int		x;
+	int		y;
+	void	*img;
+
+	y = 0;
+	img = mlx_new_image(prog->mlx, WIN_LENGTH, WIN_WIDTH);
+	data = (int *)mlx_get_data_addr(img, &(int){0}, &(int){0}, &(int){0});
+	while (y < WIN_WIDTH)
+	{
+		color = gradient(y);
+		x = 0;
+		while (x < WIN_LENGTH)
+		{
+			data[y * WIN_LENGTH + x] = color;
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(prog->mlx, prog->mlx_win, img, 0, 0);
+	mlx_destroy_image(prog->mlx, img);
+}
+
 int	main(int ac, char *av[])
 {
 	t_prog	prog;
@@ -92,29 +131,26 @@ int	main(int ac, char *av[])
 	view = mr_camera_init(1, &prog);
 	printf(CYAN "Camera viewport : " RESET);
 	printf("length = %f\twidth = %f\n", view.length, view.width);
+	// draw_gradient(&prog);
 	t_coord	px_position;
-	int	x = 0;
 	int	y = 0;
-	while (y < WIN_WIDTH)
+	while (y < (WIN_WIDTH))
 	{
+		int	x = 0;
 		while (x < (WIN_LENGTH))
 		{
 			px_position = mr_pixel_position(&prog, view, x, y);
-			if (x == WIN_LENGTH / 2 && y == WIN_WIDTH / 2)
-				{
-					int	j = (int)px_position.y;
-					int	k = (int)px_position.z;
-					printf("\nPosition : x = %f , y = %f , z = %f\n\n", px_position.x, px_position.y, px_position.z);
-					printf("\nj = %d, k = %d\n\n", j, k);
-					mlx_pixel_put(prog.mlx, prog.mlx_win, j, k, 0xff0000);
-					mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, 0x00ff00);
-				}
+			printf("\nPosition : x = %f , y = %f , z = %f\n\n", px_position.x, px_position.y, px_position.z);
+			if (x == (WIN_LENGTH / 2) && y == (WIN_WIDTH / 2))
+				mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, 0xff0000);
+			mlx_pixel_put(prog.mlx, prog.mlx_win, px_position.y, px_position.z, 0xffffff);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
 	mlx_hook(prog.mlx_win, 17, 1L << 0, quit_window, &prog);
+	mlx_hook(prog.mlx_win, 2, 1L << 0, key_close, &prog);
 	mlx_loop(prog.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/02/21 13:35:52 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:38:54 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void		free_array(char **split);
 void		free_object(t_object *obj);
 void		print_error(int cipher, void *ptr);
 t_object	*find_id(t_prog *prog, char *id);
+t_coord		take_coord_id(t_prog *prog, char *str);
 
 /************ config *************/
 
@@ -130,14 +131,18 @@ int			check_cylinder(char **split, t_object *obj);
 /************ window *************/
 
 int			quit_window(t_prog *obj);
+int			key_close(int key, t_prog *prog);
 
 /************ Operation ************/
 
 float		op_norm(t_coord u);
 float		op_norm_pv(t_coord u, t_coord v, float teta);
 t_coord		op_pro_vect(t_coord u, t_coord v);
-t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
+t_coord		op_vect_n_lamda(float x, t_coord u);
 t_coord		op_vector_use(t_coord u, t_coord v);
+t_coord		op_vector_addition(t_coord u, t_coord v);
+t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
 t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, int x, int y);
+t_coord		orientation_ray(t_coord u, t_prog *prog);
 
 #endif

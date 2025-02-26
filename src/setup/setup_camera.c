@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:58:32 by maandria          #+#    #+#             */
-/*   Updated: 2025/02/21 12:31:01 by maandria         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:49:35 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,37 @@ t_coord	orient2coord(t_orient *orient)
 	return (result);
 }
 
+t_coord	take_coord_id(t_prog *prog, char *str)
+{
+	t_object	*position;
+	t_coord		position_px;
+
+	position = find_id(prog, str);
+	position_px.x = position->coord->x;
+	position_px.y = position->coord->y;
+	position_px.z = position->coord->z;
+	return (position_px);
+}
+
 t_coord	mr_pixel_position(t_prog *prog, t_viewport view, int x, int y)
 {
 	t_coord		p_cam;
 	t_coord		orient_cam;
-	t_coord		position_px;
 	t_object	*position_cam;
 	t_coord		result;
 	t_camunit	cam;
-	t_coord		tmp;
 
 	position_cam = find_id(prog, "C");
-	position_px.x = position_cam->coord->x;
-	position_px.y = position_cam->coord->y;
-	position_px.z = position_cam->coord->z;
 	cam.c_avant = orient2coord(position_cam->orient);
-	p_cam = position_px;
-	tmp = (t_coord){0, 0, 1};
+	p_cam = take_coord_id(prog, "C");
 	if (cam.c_avant.x && !cam.c_avant.y && !cam.c_avant.z)
 		cam.c_haut = (t_coord){0, 0, 1};
 	else if (cam.c_avant.y && !cam.c_avant.x && !cam.c_avant.z)
 		cam.c_haut = (t_coord){0, 0, 1};
 	else if (cam.c_avant.z < 0 && !cam.c_avant.y && !cam.c_avant.x)
-		cam.c_haut = (t_coord){1, 0, 0};
-	else if (cam.c_avant.z > 0 && !cam.c_avant.y && !cam.c_avant.x)
 		cam.c_haut = (t_coord){-1, 0, 0};
+	else if (cam.c_avant.z > 0 && !cam.c_avant.y && !cam.c_avant.x)
+		cam.c_haut = (t_coord){1, 0, 0};
 	else if (cam.c_avant.z && cam.c_avant.x && !cam.c_avant.y)
 	{
 		orient_cam = (t_coord){0, 1, 0};

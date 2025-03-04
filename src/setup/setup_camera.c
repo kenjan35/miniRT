@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:58:32 by maandria          #+#    #+#             */
-/*   Updated: 2025/02/24 14:49:35 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:06:25 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,12 @@ t_coord	mr_pixel_position(t_prog *prog, t_viewport view, int x, int y)
 	else if (cam.c_avant.z && cam.c_avant.x && !cam.c_avant.y)
 	{
 		orient_cam = (t_coord){0, 1, 0};
-		cam.c_haut = op_pro_vect(cam.c_avant, orient_cam);
+		cam.c_haut = op_cross_prod(cam.c_avant, orient_cam);
 	}
 	else if (cam.c_avant.z && cam.c_avant.y && !cam.c_avant.x)
 	{
 		orient_cam = (t_coord){1, 0, 0};
-		cam.c_haut = op_pro_vect(cam.c_avant, orient_cam);
+		cam.c_haut = op_cross_prod(cam.c_avant, orient_cam);
 	}
 	result = op_position_px(p_cam, view, cam, x, y);
 	return (result);

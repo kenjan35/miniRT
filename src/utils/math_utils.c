@@ -6,13 +6,14 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:49:20 by maandria          #+#    #+#             */
-/*   Updated: 2025/02/24 14:58:17 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:06:25 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-t_coord	op_pro_vect(t_coord u, t_coord v)
+/************* produit vectoriel *****************/
+t_coord	op_cross_prod(t_coord u, t_coord v)
 {
 	t_coord	result;
 
@@ -22,6 +23,7 @@ t_coord	op_pro_vect(t_coord u, t_coord v)
 	return (result);
 }
 
+/************* norme d'un produit vectoriel ********/
 float	op_norm_pv(t_coord u, t_coord v, float teta)
 {
 	float	result;
@@ -30,6 +32,7 @@ float	op_norm_pv(t_coord u, t_coord v, float teta)
 	return (result);
 }
 
+/************* norme d'un vecteur *****************/
 float	op_norm(t_coord u)
 {
 	float	result;
@@ -38,6 +41,7 @@ float	op_norm(t_coord u)
 	return (result);
 }
 
+/************* addition de vecteur *****************/
 t_coord	op_vector_addition(t_coord u, t_coord v)
 {
 	t_coord	result;
@@ -48,6 +52,7 @@ t_coord	op_vector_addition(t_coord u, t_coord v)
 	return (result);
 }
 
+/************* produit d'un vecteur et un nbr *******/
 t_coord	op_vect_n_lamda(float x, t_coord u)
 {
 	t_coord	result;

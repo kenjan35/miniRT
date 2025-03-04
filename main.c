@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/02/26 17:45:02 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:02:46 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,12 +126,14 @@ int	main(int ac, char *av[])
 		ft_putstr_fd(RED "Error :\nWrong number of element\n" RESET, 2);
 		exit(1);
 	}
+
+	/*********** Debut Test execution ***********/
 	t_viewport view;
 
 	view = mr_camera_init(1, &prog);
 	printf(CYAN "Camera viewport : " RESET);
 	printf("length = %f\twidth = %f\n", view.length, view.width);
-	// draw_gradient(&prog);
+	draw_gradient(&prog);
 	t_coord	px_position;
 	int	y = 0;
 	while (y < (WIN_WIDTH))
@@ -149,6 +151,8 @@ int	main(int ac, char *av[])
 		x = 0;
 		y++;
 	}
+	/*********** Fin Test execution ***********/
+
 	mlx_hook(prog.mlx_win, 17, 1L << 0, quit_window, &prog);
 	mlx_hook(prog.mlx_win, 2, 1L << 0, key_close, &prog);
 	mlx_loop(prog.mlx);

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/02/26 17:38:54 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:30:16 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,21 @@ typedef struct s_camunit
 	t_coord		c_haut;
 }	t_camunit;
 
+typedef struct s_ray
+{
+	t_coord	ro;
+	t_coord	v;
+	t_coord	rso;
+}	t_ray;
+
+typedef struct s_quadric
+{
+	float	A;
+	float	B;
+	float	C;
+}	t_quadric;
+
+
 /************ tools *************/
 
 int			open_fd(char *file);
@@ -136,13 +151,16 @@ int			key_close(int key, t_prog *prog);
 /************ Operation ************/
 
 float		op_norm(t_coord u);
+float		op_dot_prod(t_coord u, t_coord v);
+float		op_solution_quad(float A, float B, float C);
 float		op_norm_pv(t_coord u, t_coord v, float teta);
-t_coord		op_pro_vect(t_coord u, t_coord v);
+t_coord		op_cross_prod(t_coord u, t_coord v);
 t_coord		op_vect_n_lamda(float x, t_coord u);
 t_coord		op_vector_use(t_coord u, t_coord v);
+t_coord		orientation_ray(t_coord u, t_prog *prog);
 t_coord		op_vector_addition(t_coord u, t_coord v);
 t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
 t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, int x, int y);
-t_coord		orientation_ray(t_coord u, t_prog *prog);
+t_ray		op_quadrique_value_sp(t_coord px,t_prog *prog);
 
 #endif

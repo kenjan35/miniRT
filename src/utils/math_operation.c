@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:39:36 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/03 15:55:35 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/05 12:21:17 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_coord	op_vector_use(t_coord u, t_coord v)
 	return (result);
 }
 
-t_coord	op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, int x, int y)
+t_coord	op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, float x, float y)
 {
 	t_coord	u;
 	t_coord	v;

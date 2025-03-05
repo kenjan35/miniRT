@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/03 16:02:46 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:59:48 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ int	gradient(int y)
 	int	r;
 	int	g;
 	int	b;
-	r = 0;
-	g = 0;
-	b = (y * 255) / WIN_WIDTH;
+	r = 255 - (y * 255) / WIN_WIDTH;
+	g = 255 - (y * 255) / WIN_WIDTH;
+	b = 255;
 	color = (r << 16) | (g << 8) | b;
 	return (color);
 }
@@ -135,17 +135,32 @@ int	main(int ac, char *av[])
 	printf("length = %f\twidth = %f\n", view.length, view.width);
 	draw_gradient(&prog);
 	t_coord	px_position;
-	int	y = 0;
+	float	y = 0;
 	while (y < (WIN_WIDTH))
 	{
-		int	x = 0;
+		float	x = 0;
 		while (x < (WIN_LENGTH))
 		{
 			px_position = mr_pixel_position(&prog, view, x, y);
 			printf("\nPosition : x = %f , y = %f , z = %f\n\n", px_position.x, px_position.y, px_position.z);
 			if (x == (WIN_LENGTH / 2) && y == (WIN_WIDTH / 2))
-				mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, 0xff0000);
-			mlx_pixel_put(prog.mlx, prog.mlx_win, px_position.y, px_position.z, 0xffffff);
+			{
+				int i = 0;
+				while (i < 5)
+				{
+					int	j = 0;
+					while (j < 5)
+					{
+						mlx_pixel_put(prog.mlx, prog.mlx_win, x + j, y + i, 0xff0000);
+						j++;
+					}
+					i++;
+				}
+			}
+			// if (px_position.y < 0 || px_position.z < 0)
+			// 	mlx_pixel_put(prog.mlx, prog.mlx_win, x + (-1 * px_position.y), y + (-1 * px_position.z), 0xffff00);
+			// else
+			mlx_pixel_put(prog.mlx, prog.mlx_win, x + px_position.y, y + px_position.z, 0xffffff);
 			x++;
 		}
 		x = 0;

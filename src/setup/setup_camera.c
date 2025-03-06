@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:58:32 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/05 12:30:23 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:51:01 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 t_viewport	mr_camera_init(float n, t_prog *prog)
 {
+	t_list		*p_tmp;
 	t_object	*tmp;
 	t_viewport	view;
 	float		ratio_px;
 	float		angle;
 
+	p_tmp = prog->obj;
 	tmp = find_id(prog, "C");
 	if ((float)tmp->size[0] == 180)
 		angle = 3.1;
@@ -27,6 +29,7 @@ t_viewport	mr_camera_init(float n, t_prog *prog)
 	ratio_px = WIN_LENGTH / WIN_WIDTH;
 	view.width = (2 * n) * tanf(angle / 2);
 	view.length = ratio_px * view.width;
+	prog->obj = p_tmp;
 	return (view);
 }
 
@@ -44,11 +47,14 @@ t_coord	take_coord_id(t_prog *prog, char *str)
 {
 	t_object	*position;
 	t_coord		position_px;
+	t_list		*tmp;
 
+	tmp = prog->obj;
 	position = find_id(prog, str);
 	position_px.x = position->coord->x;
 	position_px.y = position->coord->y;
 	position_px.z = position->coord->z;
+	prog->obj = tmp;
 	return (position_px);
 }
 

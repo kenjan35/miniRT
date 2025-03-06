@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/05 12:22:09 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:53:52 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ int			key_close(int key, t_prog *prog);
 /************ Operation ************/
 
 float		op_norm(t_coord u);
+float		inter_sp(t_prog	*prog, t_ray ray);
 float		op_dot_prod(t_coord u, t_coord v);
 float		op_solution_quad(float A, float B, float C);
 float		op_norm_pv(t_coord u, t_coord v, float teta);
@@ -159,8 +160,10 @@ t_coord		op_vect_n_lamda(float x, t_coord u);
 t_coord		op_vector_use(t_coord u, t_coord v);
 t_coord		orientation_ray(t_coord u, t_prog *prog);
 t_coord		op_vector_addition(t_coord u, t_coord v);
+t_coord		ray_launch(t_coord u, t_coord v, float t);
 t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
 t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, float x, float y);
 t_ray		op_quadrique_value_sp(t_coord px,t_prog *prog);
+t_quadric	op_values_sp(t_ray ray, float rayon);
 
 #endif

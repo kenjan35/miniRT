@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:57:45 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/03 15:48:00 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/06 13:51:54 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ t_coord	orientation_ray(t_coord u, t_prog *prog)
 {
 	t_coord	result;
 	t_coord position_cam;
+	t_prog	*tmp;
 
-	position_cam = take_coord_id(prog, "C");
+	tmp = prog;
+	position_cam = take_coord_id(tmp, "C");
 	result = op_vect_n_lamda(-1, position_cam);
 	result = op_vector_addition(u, result);
 	result = op_vect_n_lamda(1 / op_norm(result), result);

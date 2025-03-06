@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/05 14:59:48 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:40:27 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,52 +28,54 @@ void	check_file(char *av)
 
 t_object	*find_id(t_prog *prog, char *id)
 {
-	t_prog		*tmp;
+	t_list		*tmp_obj;
 	t_object	*object;
 
-	tmp = prog;
-	object = tmp->obj->content;
-	while (tmp->obj->next)
+	tmp_obj = prog->obj;
+	object = prog->obj->content;
+	while (prog->obj)
 	{
 		if (ft_strncmp(object->id, id, ft_strlen(id)) == 0)
+		{
+			prog->obj = tmp_obj;
 			return (object);
+		}
 		else
 		{
-			tmp->obj = tmp->obj->next;
-			object = tmp->obj->content;
+			prog->obj = prog->obj->next;
+			object = prog->obj->content;
 		}
 	}
-	if (ft_strncmp(object->id, id, ft_strlen(id)) == 0)
-		return (object);
-	else
-		return (NULL);
+	prog->obj = tmp_obj;
+	return (NULL);
 }
 
 void	check_list(t_prog *prog)
 {
 	t_prog		*tmp;
 	t_object	*object;
+	t_list		*tmp_obj;
 
 	tmp = prog;
-	while (tmp->obj->next)
+	tmp_obj = tmp->obj;
+	while (tmp->obj)
 	{
 			object = tmp->obj->content;
 			printf("Id : %s\n", object->id);
 			tmp->obj = tmp->obj->next;
 	}
-	object = tmp->obj->content;
-	printf("Id : %s\n", object->id);
+	tmp->obj = tmp_obj;
 }
 
-int	gradient(int y)
+int	gradient(int y, t_color *colors)
 {
 	int	color;
 	int	r;
 	int	g;
 	int	b;
-	r = 255 - (y * 255) / WIN_WIDTH;
-	g = 255 - (y * 255) / WIN_WIDTH;
-	b = 255;
+	r = (colors->red - (y * 255) / WIN_WIDTH);
+	g = (colors->green - (y * 255) / WIN_WIDTH);
+	b = colors->blue;
 	color = (r << 16) | (g << 8) | b;
 	return (color);
 }
@@ -84,14 +86,16 @@ void	draw_gradient(t_prog *prog)
 	int		color;
 	int		x;
 	int		y;
+	t_color	c;
 	void	*img;
 
 	y = 0;
+	c = (t_color){255, 255, 255};
 	img = mlx_new_image(prog->mlx, WIN_LENGTH, WIN_WIDTH);
 	data = (int *)mlx_get_data_addr(img, &(int){0}, &(int){0}, &(int){0});
 	while (y < WIN_WIDTH)
 	{
-		color = gradient(y);
+		color = gradient(y, &c);
 		x = 0;
 		while (x < WIN_LENGTH)
 		{
@@ -126,15 +130,23 @@ int	main(int ac, char *av[])
 		ft_putstr_fd(RED "Error :\nWrong number of element\n" RESET, 2);
 		exit(1);
 	}
-
+	
 	/*********** Debut Test execution ***********/
-	t_viewport view;
-
+	t_viewport	view;
+	t_coord		px_position;
+	t_coord		rt;
+	t_ray		ray;
+	float		time;
+	t_object	*obj;
+	t_color		*color;
+	
+	check_list(&prog);
 	view = mr_camera_init(1, &prog);
 	printf(CYAN "Camera viewport : " RESET);
 	printf("length = %f\twidth = %f\n", view.length, view.width);
 	draw_gradient(&prog);
-	t_coord	px_position;
+	obj = find_id(&prog, "sp");
+	color = obj->color;
 	float	y = 0;
 	while (y < (WIN_WIDTH))
 	{
@@ -142,32 +154,21 @@ int	main(int ac, char *av[])
 		while (x < (WIN_LENGTH))
 		{
 			px_position = mr_pixel_position(&prog, view, x, y);
-			printf("\nPosition : x = %f , y = %f , z = %f\n\n", px_position.x, px_position.y, px_position.z);
+			ray = op_quadrique_value_sp(px_position, &prog);
+			printf("main ray : x = %f, y = %f, z = %f", ray.v.x, ray.v.y, ray.v.z);
+			time = inter_sp(&prog, ray);
+			rt = ray_launch(px_position, ray.v, time);
+			if (time > 0)
+				mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, gradient(y, color));
 			if (x == (WIN_LENGTH / 2) && y == (WIN_WIDTH / 2))
-			{
-				int i = 0;
-				while (i < 5)
-				{
-					int	j = 0;
-					while (j < 5)
-					{
-						mlx_pixel_put(prog.mlx, prog.mlx_win, x + j, y + i, 0xff0000);
-						j++;
-					}
-					i++;
-				}
-			}
-			// if (px_position.y < 0 || px_position.z < 0)
-			// 	mlx_pixel_put(prog.mlx, prog.mlx_win, x + (-1 * px_position.y), y + (-1 * px_position.z), 0xffff00);
-			// else
-			mlx_pixel_put(prog.mlx, prog.mlx_win, x + px_position.y, y + px_position.z, 0xffffff);
+				mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, 0xff0000);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
 	/*********** Fin Test execution ***********/
-
+	check_list(&prog);
 	mlx_hook(prog.mlx_win, 17, 1L << 0, quit_window, &prog);
 	mlx_hook(prog.mlx_win, 2, 1L << 0, key_close, &prog);
 	mlx_loop(prog.mlx);

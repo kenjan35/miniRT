@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:39:36 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/05 12:21:17 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:58:04 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_coord	op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index)
 		return ((t_coord){INFINITY, INFINITY, INFINITY});
 	}
 	result = op_cross_prod(u, v);
-	result = op_vect_n_lamda( 1 / op_norm(result), result);
+	result = op_vect_n_lamda(1 / op_norm(result), result);
 	result = op_vect_n_lamda(px_nb / nbr, result);
 	return (result);
 }
@@ -59,9 +59,9 @@ t_coord	op_vector_use(t_coord u, t_coord v)
 
 t_coord	op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, float x, float y)
 {
-	t_coord	u;
-	t_coord	v;
-	t_coord result;
+	t_coord		u;
+	t_coord		v;
+	t_coord 	result;
 
 	u = op_vpixel_unit(view, cam.c_avant, cam.c_haut, 0);
 	v = op_vpixel_unit(view, cam.c_avant, u, 1);

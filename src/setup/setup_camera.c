@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:58:32 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/06 13:51:01 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:28:59 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ t_viewport	mr_camera_init(float n, t_prog *prog)
 	p_tmp = prog->obj;
 	tmp = find_id(prog, "C");
 	if ((float)tmp->size[0] == 180)
-		angle = 3.1;
+		angle = (179 * PI) / 180.00;
 	else
 		angle = ((float)tmp->size[0] * PI) / 180.00;
 	ratio_px = WIN_LENGTH / WIN_WIDTH;
-	view.width = (2 * n) * tanf(angle / 2);
+	view.width = (2 * n) * tan(angle / 2);
 	view.length = ratio_px * view.width;
+	printf("FOV radian : %f\n", angle);
+	printf(CYAN "Camera viewport : " RESET);
+	printf("length = %f\twidth = %f\n", view.length, view.width);
 	prog->obj = p_tmp;
 	return (view);
 }
@@ -87,6 +90,8 @@ t_coord	mr_pixel_position(t_prog *prog, t_viewport view, float x, float y)
 		orient_cam = (t_coord){1, 0, 0};
 		cam.c_haut = op_cross_prod(cam.c_avant, orient_cam);
 	}
+	else if (cam.c_avant.x && cam.c_avant.y && !cam.c_avant.z)
+		cam.c_haut = (t_coord){0, 0, 1};
 	result = op_position_px(p_cam, view, cam, x, y);
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/06 14:40:27 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:17:33 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,6 @@ int	main(int ac, char *av[])
 	
 	check_list(&prog);
 	view = mr_camera_init(1, &prog);
-	printf(CYAN "Camera viewport : " RESET);
-	printf("length = %f\twidth = %f\n", view.length, view.width);
 	draw_gradient(&prog);
 	obj = find_id(&prog, "sp");
 	color = obj->color;
@@ -155,13 +153,13 @@ int	main(int ac, char *av[])
 		{
 			px_position = mr_pixel_position(&prog, view, x, y);
 			ray = op_quadrique_value_sp(px_position, &prog);
-			printf("main ray : x = %f, y = %f, z = %f", ray.v.x, ray.v.y, ray.v.z);
+			// printf("main ray : x = %f, y = %f, z = %f\n", ray.v.x, ray.v.y, ray.v.z);
 			time = inter_sp(&prog, ray);
 			rt = ray_launch(px_position, ray.v, time);
 			if (time > 0)
 				mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, gradient(y, color));
 			if (x == (WIN_LENGTH / 2) && y == (WIN_WIDTH / 2))
-				mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, 0xff0000);
+				mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, 0xffffff);
 			x++;
 		}
 		x = 0;

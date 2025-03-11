@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/10 15:17:33 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/11 09:27:06 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ int	gradient(int y, t_color *colors)
 	int	r;
 	int	g;
 	int	b;
-	r = (colors->red - (y * 255) / WIN_WIDTH);
-	g = (colors->green - (y * 255) / WIN_WIDTH);
-	b = colors->blue;
+	r = (colors->red - (y * 255) / WIN_WIDTH) % 255;
+	g = (colors->green - (y * 255) / WIN_WIDTH) % 255;
+	b = (colors->blue - (y * 255) / WIN_WIDTH) % 255;
 	color = (r << 16) | (g << 8) | b;
 	return (color);
 }

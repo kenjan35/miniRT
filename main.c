@@ -124,7 +124,7 @@ int	main(int ac, char *av[])
 		ft_putstr_fd(RED "Error :\nRendering problem\n" RESET, 2);
 		exit(1);
 	}
-	set_data(av[1], &(prog.obj));
+	set_data(av[1], &(prog.obj), &prog);
 	if (check_element(&(prog.obj)) == 0)
 	{
 		ft_putstr_fd(RED "Error :\nWrong number of element\n" RESET, 2);

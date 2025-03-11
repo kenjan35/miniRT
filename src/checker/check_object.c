@@ -55,21 +55,25 @@ t_object	*init_object(void)
 	obj->orient = (t_orient *) malloc(sizeof(t_orient));
 	if (!obj->coord || !obj->color || !obj->orient)
 	{
-		free(obj);
 		if (obj->coord)
 			free(obj->coord);
 		if (obj->color)
 			free(obj->color);
+    if (obj->orient)
+			free(obj->orient);
+		free(obj);
 		return (NULL);
 	}
 	return (obj);
 }
 
-void	set_data(char *file, t_list **list)
+void	set_data(char *file, t_list **list, t_prog *prog)
 {
 	t_object	*obj;
 	char		**str;
 	int			fd;
+  t_list  *tmp;
+  t_list  *current;
 
 	fd = open_fd(file);
 	str = get_line(fd);
@@ -81,12 +85,31 @@ void	set_data(char *file, t_list **list)
 	while (str)
 	{
 		obj = init_object();
-		if (check_if_valid(str, obj) == -1)
+    if (str[0] && !ft_strncmp(str[0], "\n", 2))
+    {
+      free_array(str);
+      free_object(obj);
+      str = get_line(fd);
+      continue ;
+    }
+    else if (check_if_valid(str, obj) == -1 || !obj)
 		{
 			free_array(str);
-			free_object(obj);
-			str = get_line(fd);
-			continue ;
+      free_object(obj);
+      tmp = *list;
+      while (tmp)
+      {
+        current = tmp;
+        obj = current->content;
+        free_object(obj);
+        tmp = tmp->next;
+        free(current);
+      }
+      mlx_destroy_window(prog->mlx, prog->mlx_win);
+      mlx_destroy_display(prog->mlx);
+      free(prog->mlx);
+		  ft_putstr_fd(RED "Error :\nComponent problems\n" RESET, 2);
+      exit(1) ;
 		}
 		ft_lstadd_back(list, ft_lstnew(obj));
 		free_array(str);

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:39:36 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/11 10:55:29 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:56:11 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ t_coord	op_vector_use(t_coord u, t_coord v)
 	return (result);
 }
 
-t_coord	op_position_px(t_coord pos_cam, t_viewport view, t_camunit cam, float x, float y)
+t_coord	op_position_px(t_coord pos_cam, t_viewport view,
+		t_camunit cam, float *xy)
 {
 	t_coord		u;
 	t_coord		v;
@@ -70,7 +71,7 @@ t_coord	op_position_px(t_coord pos_cam, t_viewport view, t_camunit cam, float x,
 	result = op_vector_addition(result, pos_cam);
 	result = op_vector_addition(result, cam.c_avant);
 	result = op_vector_addition(result, op_vector_use(u, v));
-	result = op_vector_addition(result, op_vect_n_lamda(x, u));
-	result = op_vector_addition(result, op_vect_n_lamda(y, v));
+	result = op_vector_addition(result, op_vect_n_lamda(xy[0], u));
+	result = op_vector_addition(result, op_vect_n_lamda(xy[1], v));
 	return (result);
 }

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 13:32:38 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/21 15:20:58 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:01:36 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_object	*init_object(void)
 			free(obj->coord);
 		if (obj->color)
 			free(obj->color);
-    if (obj->orient)
+		if (obj->orient)
 			free(obj->orient);
 		free(obj);
 		return (NULL);
@@ -72,8 +72,8 @@ void	set_data(char *file, t_list **list, t_prog *prog)
 	t_object	*obj;
 	char		**str;
 	int			fd;
-  t_list  *tmp;
-  t_list  *current;
+	t_list		*tmp;
+	t_list		*current;
 
 	fd = open_fd(file);
 	str = get_line(fd);
@@ -85,31 +85,31 @@ void	set_data(char *file, t_list **list, t_prog *prog)
 	while (str)
 	{
 		obj = init_object();
-    if (str[0] && !ft_strncmp(str[0], "\n", 2))
-    {
-      free_array(str);
-      free_object(obj);
-      str = get_line(fd);
-      continue ;
-    }
-    else if (check_if_valid(str, obj) == -1 || !obj)
+		if (str[0] && !ft_strncmp(str[0], "\n", 2))
 		{
 			free_array(str);
-      free_object(obj);
-      tmp = *list;
-      while (tmp)
-      {
-        current = tmp;
-        obj = current->content;
-        free_object(obj);
-        tmp = tmp->next;
-        free(current);
-      }
-      mlx_destroy_window(prog->mlx, prog->mlx_win);
-      mlx_destroy_display(prog->mlx);
-      free(prog->mlx);
-		  ft_putstr_fd(RED "Error :\nComponent problems\n" RESET, 2);
-      exit(1) ;
+			free_object(obj);
+			str = get_line(fd);
+			continue ;
+		}
+		else if (check_if_valid(str, obj) == -1 || !obj)
+		{
+			free_array(str);
+			free_object(obj);
+			tmp = *list;
+			while (tmp)
+			{
+				current = tmp;
+				obj = current->content;
+				free_object(obj);
+				tmp = tmp->next;
+				free(current);
+			}
+			mlx_destroy_window(prog->mlx, prog->mlx_win);
+			mlx_destroy_display(prog->mlx);
+			free(prog->mlx);
+			ft_putstr_fd(RED "Error :\nComponent problems\n" RESET, 2);
+			exit(1);
 		}
 		ft_lstadd_back(list, ft_lstnew(obj));
 		free_array(str);

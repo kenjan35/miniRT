@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/11 09:27:06 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:32:28 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,31 +139,32 @@ int	main(int ac, char *av[])
 	float		time;
 	t_object	*obj;
 	t_color		*color;
+	float		xy[2];
 	
 	check_list(&prog);
 	view = mr_camera_init(1, &prog);
 	draw_gradient(&prog);
 	obj = find_id(&prog, "sp");
 	color = obj->color;
-	float	y = 0;
-	while (y < (WIN_WIDTH))
+	xy[1] = 0;
+	while (xy[1] < (WIN_WIDTH))
 	{
-		float	x = 0;
-		while (x < (WIN_LENGTH))
+		xy[0] = 0;
+		while (xy[0] < (WIN_LENGTH))
 		{
-			px_position = mr_pixel_position(&prog, view, x, y);
+			px_position = mr_pixel_position(&prog, view, xy);
 			ray = op_quadrique_value_sp(px_position, &prog);
 			// printf("main ray : x = %f, y = %f, z = %f\n", ray.v.x, ray.v.y, ray.v.z);
 			time = inter_sp(&prog, ray);
 			rt = ray_launch(px_position, ray.v, time);
 			if (time > 0)
-				mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, gradient(y, color));
-			if (x == (WIN_LENGTH / 2) && y == (WIN_WIDTH / 2))
-				mlx_pixel_put(prog.mlx, prog.mlx_win, x, y, 0xffffff);
-			x++;
+				mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], gradient(xy[1], color));
+			if (xy[0] == (WIN_LENGTH / 2) && xy[1] == (WIN_WIDTH / 2))
+				mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], 0xffffff);
+			xy[0]++;
 		}
-		x = 0;
-		y++;
+		xy[0] = 0;
+		xy[1]++;
 	}
 	/*********** Fin Test execution ***********/
 	check_list(&prog);

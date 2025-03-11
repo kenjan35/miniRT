@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/06 12:53:52 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:54:07 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ t_coord		take_coord_id(t_prog *prog, char *str);
 /************ config *************/
 
 t_viewport	mr_camera_init(float n, t_prog *prog);
-t_coord		mr_pixel_position(t_prog *prog, t_viewport view, float x, float y);
+t_coord		mr_pixel_position(t_prog *prog, t_viewport view, float *xy);
 
 /************ data *************/
 
@@ -162,7 +162,7 @@ t_coord		orientation_ray(t_coord u, t_prog *prog);
 t_coord		op_vector_addition(t_coord u, t_coord v);
 t_coord		ray_launch(t_coord u, t_coord v, float t);
 t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
-t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, float x, float y);
+t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, float *xy);
 t_ray		op_quadrique_value_sp(t_coord px,t_prog *prog);
 t_quadric	op_values_sp(t_ray ray, float rayon);
 

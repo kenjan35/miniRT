@@ -113,7 +113,7 @@ t_coord		mr_pixel_position(t_prog *prog, t_viewport view, float x, float y);
 
 /************ data *************/
 
-void		set_data(char *file, t_list **list);
+void		set_data(char *file, t_list **list, t_prog *prog);
 void		init_nbr_element(int nbr[]);
 int			check_element(t_list **list);
 void		set_nbr_element(int nbr[], t_object *obj);

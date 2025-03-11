@@ -6,16 +6,16 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:54:57 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/06 12:51:10 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:53:32 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-t_ray	op_quadrique_value_sp(t_coord px,t_prog *prog)
+t_ray	op_quadrique_value_sp(t_coord px, t_prog *prog)
 {
 	t_ray	result;
-	t_coord v;
+	t_coord	v;
 	t_coord	rso;
 	t_coord	rs;
 	t_prog	*tmp;
@@ -24,7 +24,6 @@ t_ray	op_quadrique_value_sp(t_coord px,t_prog *prog)
 	rs = take_coord_id(tmp, "sp");
 	v = orientation_ray(px, tmp);
 	rso = op_vector_addition(px, op_vect_n_lamda(-1, rs));
-	
 	result.ro = px;
 	result.rso = rso;
 	result.v = v;

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:49:20 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/03 15:06:25 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:43:33 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ float	op_norm(t_coord u)
 t_coord	op_vector_addition(t_coord u, t_coord v)
 {
 	t_coord	result;
-	
+
 	result.x = u.x + v.x;
 	result.y = u.y + v.y;
 	result.z = u.z + v.z;

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:58:32 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/11 12:52:34 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/13 16:31:13 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_viewport	mr_camera_init(float n, t_prog *prog)
 	if ((float)tmp->size[0] == 180)
 		angle = (179 * PI) / 180.00;
 	else
-		angle = ((float)tmp->size[0] * PI) / 180.00;
+		angle = ((float)tmp->size[0] * 0.5 * PI) / 180.00;
 	ratio_px = WIN_LENGTH / WIN_WIDTH;
 	view.width = (2 * n) * tan(angle / 2);
 	view.length = ratio_px * view.width;

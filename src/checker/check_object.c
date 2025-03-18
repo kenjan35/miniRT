@@ -6,13 +6,13 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 13:32:38 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/11 13:01:36 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:25:31 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-int	get_size(char *other, float max)
+int	get_size(char *other, double max)
 {
 	if (!other || arc_atof((char *) other) > max || \
 		arc_atof((char *) other) < 0)

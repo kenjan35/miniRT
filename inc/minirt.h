@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/11 12:54:07 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:33:31 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ typedef struct s_color
 
 typedef struct s_orient
 {
-	float	or_x;
-	float	or_y;
-	float	or_z;
+	double	or_x;
+	double	or_y;
+	double	or_z;
 }	t_orient;
 
 typedef struct s_coord
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }	t_coord;
 
 
@@ -56,7 +56,7 @@ typedef struct s_object
 	t_coord		*coord;
 	t_color		*color;
 	t_orient	*orient;
-	float		size[2];
+	double		size[2];
 }	t_object;
 
 typedef struct s_prog
@@ -69,8 +69,8 @@ typedef struct s_prog
 
 typedef struct	s_viewport
 {
-	float		length;
-	float		width;
+	double		length;
+	double		width;
 }	t_viewport;
 
 typedef struct s_camunit
@@ -88,9 +88,9 @@ typedef struct s_ray
 
 typedef struct s_quadric
 {
-	float	A;
-	float	B;
-	float	C;
+	double	A;
+	double	B;
+	double	C;
 }	t_quadric;
 
 
@@ -98,8 +98,8 @@ typedef struct s_quadric
 
 int			open_fd(char *file);
 char		**get_line(int fd);
-int			get_size(char *other, float max);
-float		arc_atof(const char *nptr);
+int			get_size(char *other, double max);
+double		arc_atof(const char *nptr);
 void		free_array(char **split);
 void		free_object(t_object *obj);
 void		print_error(int cipher, void *ptr);
@@ -108,8 +108,8 @@ t_coord		take_coord_id(t_prog *prog, char *str);
 
 /************ config *************/
 
-t_viewport	mr_camera_init(float n, t_prog *prog);
-t_coord		mr_pixel_position(t_prog *prog, t_viewport view, float *xy);
+t_viewport	mr_camera_init(double n, t_prog *prog);
+t_coord		mr_pixel_position(t_prog *prog, t_viewport view, double *xy);
 
 /************ data *************/
 
@@ -150,20 +150,21 @@ int			key_close(int key, t_prog *prog);
 
 /************ Operation ************/
 
-float		op_norm(t_coord u);
-float		inter_sp(t_prog	*prog, t_ray ray);
-float		op_dot_prod(t_coord u, t_coord v);
-float		op_solution_quad(float A, float B, float C);
-float		op_norm_pv(t_coord u, t_coord v, float teta);
+double		op_norm(t_coord u);
+double		inter_sp(t_prog	*prog, t_ray ray);
+double		op_dot_prod(t_coord u, t_coord v);
+double		op_solution_quad(double A, double B, double C);
+double		op_norm_pv(t_coord u, t_coord v, double teta);
+t_coord		orient2coord(t_orient *orient);
 t_coord		op_cross_prod(t_coord u, t_coord v);
-t_coord		op_vect_n_lamda(float x, t_coord u);
 t_coord		op_vector_use(t_coord u, t_coord v);
+t_coord		op_vect_n_lamda(double x, t_coord u);
 t_coord		orientation_ray(t_coord u, t_prog *prog);
 t_coord		op_vector_addition(t_coord u, t_coord v);
-t_coord		ray_launch(t_coord u, t_coord v, float t);
+t_coord		ray_launch(t_coord u, t_coord v, double t);
 t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
-t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, float *xy);
+t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, double *xy);
 t_ray		op_quadrique_value_sp(t_coord px,t_prog *prog);
-t_quadric	op_values_sp(t_ray ray, float rayon);
+t_quadric	op_values_polynome(t_ray ray, double rayon);
 
 #endif

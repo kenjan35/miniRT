@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 12:49:20 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/11 10:43:33 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:25:31 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ t_coord	op_cross_prod(t_coord u, t_coord v)
 }
 
 /************* norme d'un produit vectoriel ********/
-float	op_norm_pv(t_coord u, t_coord v, float teta)
+double	op_norm_pv(t_coord u, t_coord v, double teta)
 {
-	float	result;
+	double	result;
 
 	result = op_norm(u) * op_norm(v) * sinf(teta);
 	return (result);
 }
 
 /************* norme d'un vecteur *****************/
-float	op_norm(t_coord u)
+double	op_norm(t_coord u)
 {
-	float	result;
+	double	result;
 
 	result = sqrtf((u.x * u.x) + (u.y * u.y) + (u.z * u.z));
 	return (result);
@@ -53,7 +53,7 @@ t_coord	op_vector_addition(t_coord u, t_coord v)
 }
 
 /************* produit d'un vecteur et un nbr *******/
-t_coord	op_vect_n_lamda(float x, t_coord u)
+t_coord	op_vect_n_lamda(double x, t_coord u)
 {
 	t_coord	result;
 

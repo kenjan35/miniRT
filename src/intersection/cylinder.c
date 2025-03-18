@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:38:41 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/13 16:15:35 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:25:31 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ t_ray	op_quadrique_value_cy(t_coord px, t_prog *prog)
 	return (result);
 }
 
-float	inter_cy(t_prog	*prog, t_ray ray)
+double	inter_cy(t_prog	*prog, t_ray ray)
 {
-	float		t;
-	float		rayon;
+	double		t;
+	double		rayon;
 	t_object	*cy;
 	t_prog		*tmp;
 	t_quadric	value;

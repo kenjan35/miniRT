@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:57:45 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/11 10:52:24 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:25:31 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_coord	orientation_ray(t_coord u, t_prog *prog)
 	return (result);
 }
 
-t_coord	ray_launch(t_coord u, t_coord v, float t)
+t_coord	ray_launch(t_coord u, t_coord v, double t)
 {
 	t_coord	result;
 

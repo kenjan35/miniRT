@@ -6,14 +6,14 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:39:36 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/11 12:56:11 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:25:31 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
 /************* produit scalaire ******************/
-float	op_dot_prod(t_coord u, t_coord v)
+double	op_dot_prod(t_coord u, t_coord v)
 {
 	return ((u.x * v.x) + (u.y * v.y) + (u.z * v.z));
 }
@@ -23,8 +23,8 @@ t_coord	op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index)
 {
 	t_coord	result;
 	t_coord	coord;
-	float	nbr;
-	float	px_nb;
+	double	nbr;
+	double	px_nb;
 
 	coord = op_cross_prod(u, v);
 	if (index == 0)
@@ -59,7 +59,7 @@ t_coord	op_vector_use(t_coord u, t_coord v)
 }
 
 t_coord	op_position_px(t_coord pos_cam, t_viewport view,
-		t_camunit cam, float *xy)
+		t_camunit cam, double *xy)
 {
 	t_coord		u;
 	t_coord		v;

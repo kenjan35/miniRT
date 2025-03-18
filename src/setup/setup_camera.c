@@ -6,26 +6,26 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:58:32 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/13 16:31:13 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:25:31 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-t_viewport	mr_camera_init(float n, t_prog *prog)
+t_viewport	mr_camera_init(double n, t_prog *prog)
 {
 	t_list		*p_tmp;
 	t_object	*tmp;
 	t_viewport	view;
-	float		ratio_px;
-	float		angle;
+	double		ratio_px;
+	double		angle;
 
 	p_tmp = prog->obj;
 	tmp = find_id(prog, "C");
-	if ((float)tmp->size[0] == 180)
+	if ((double)tmp->size[0] == 180)
 		angle = (179 * PI) / 180.00;
 	else
-		angle = ((float)tmp->size[0] * 0.5 * PI) / 180.00;
+		angle = ((double)tmp->size[0] * 0.5 * PI) / 180.00;
 	ratio_px = WIN_LENGTH / WIN_WIDTH;
 	view.width = (2 * n) * tan(angle / 2);
 	view.length = ratio_px * view.width;
@@ -79,7 +79,7 @@ t_coord	set_cam_haut(t_coord c_avant)
 	return (result);
 }
 
-t_coord	mr_pixel_position(t_prog *prog, t_viewport view, float *xy)
+t_coord	mr_pixel_position(t_prog *prog, t_viewport view, double *xy)
 {
 	t_coord		p_cam;
 	t_coord		orient_cam;

@@ -66,7 +66,6 @@ typedef struct s_prog
 	t_list		*obj;
 }	t_prog;
 
-
 typedef struct	s_viewport
 {
 	double		length;
@@ -169,5 +168,13 @@ t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, double *
 t_ray		op_quadrique_value_sp(t_coord px,t_prog *prog);
 t_ray		op_quadrique_value_cy(t_coord px, t_prog *prog);
 t_quadric	op_values_polynome(t_ray ray, double rayon);
+
+/************** Operation Plane *****************/
+
+t_ray		op_quadrique_value_pl(t_coord px,t_prog *prog);
+t_orient	take_orient_id(t_prog *prog, char *str);
+double		vector_numer(t_coord n, t_coord rp, t_coord px);
+double		vector_denom(t_coord n, t_coord v);
+double		time_inter_pl(t_coord px, t_prog *prog);
 
 #endif

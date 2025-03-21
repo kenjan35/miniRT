@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:24:01 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/21 15:21:59 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:20:20 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	get_orient(char *orient, t_object *obj)
 	err = 0;
 	while (str[i] != NULL)
 	{
-		if (arc_atof((char *) str[i]) < -1 || \
-			arc_atof((char *) str[i]) > 1)
+		if ((arc_atof((char *) str[i]) < -1 || \
+			arc_atof((char *) str[i]) > 1))
 		{
 			err = -1;
 			break ;

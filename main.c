@@ -136,7 +136,7 @@ int	main(int ac, char *av[])
 	//=====================================================
 	//				TEST SPHERE
 	//=====================================================
-	t_viewport	view;
+	/*t_viewport	view;
 	t_coord		px_position;
 	t_coord		rt;
 	t_ray		ray;
@@ -160,6 +160,41 @@ int	main(int ac, char *av[])
 			ray = op_quadrique_value_sp(px_position, &prog);
 			printf("main ray : x = %f, y = %f, z = %f\n", ray.v.x, ray.v.y, ray.v.z);
 			time = inter_sp(&prog, ray);
+			rt = ray_launch(px_position, ray.v, time);
+			if (time > 0)
+				mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], gradient(xy[1], color));
+			if (xy[0] == (WIN_LENGTH / 2) && xy[1] == (WIN_WIDTH / 2))
+				mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], 0xffffff);
+			xy[0]++;
+		}
+		xy[0] = 0;
+		xy[1]++;
+	}*/
+
+	t_viewport	view;
+	t_coord		px_position;
+	t_coord		rt;
+	t_ray		ray;
+	double		time;
+	t_object	*obj;
+	t_color		*color;
+	double		xy[2];
+	
+	check_list(&prog);
+	view = mr_camera_init(1, &prog);
+	//draw_gradient(&prog);
+	obj = find_id(&prog, "pl");
+	color = obj->color;
+	xy[1] = 0;
+	while (xy[1] < (WIN_WIDTH))
+	{
+		xy[0] = 0;
+		while (xy[0] < (WIN_LENGTH))
+		{
+			px_position = mr_pixel_position(&prog, view, xy);
+			ray = op_quadrique_value_pl(px_position, &prog);
+			printf("main ray : x = %f, y = %f, z = %f\n", ray.v.x, ray.v.y, ray.v.z);
+			time = time_inter_pl(px_position, &prog);
 			rt = ray_launch(px_position, ray.v, time);
 			if (time > 0)
 				mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], gradient(xy[1], color));

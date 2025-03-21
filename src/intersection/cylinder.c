@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:38:41 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/18 14:25:31 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:27:31 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ t_ray	op_quadrique_value_cy(t_coord px, t_prog *prog)
 	t_ray		result;
 	t_coord		rs;
 	t_coord		coord;
+	t_coord		vector;
 	t_object	*obj;
 
 	obj = find_id(prog, "cy");
 	coord = take_coord_id(prog, "cy");
+	printf(CYAN "\nquadrique cy vector : x = %f, y = %f, z = %f\n" RESET, coord.x, coord.y, coord.z);
+	vector = orientation_ray(px, prog);
 	rs = orient2coord(obj->orient);
-	result.v = op_cross_prod(coord, rs);
+	rs = op_ortgl_projec_prll(rs, coord);
+	result.v = op_cross_prod(vector, rs);
 	result.v = op_cross_prod(rs, result.v);
 	result.ro = px;
 	result.rso = op_vect_n_lamda(-1, coord);

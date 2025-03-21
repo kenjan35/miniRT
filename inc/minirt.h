@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/18 14:33:31 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:08:52 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,7 @@ int			key_close(int key, t_prog *prog);
 
 double		op_norm(t_coord u);
 double		inter_sp(t_prog	*prog, t_ray ray);
+double		inter_cy(t_prog	*prog, t_ray ray);
 double		op_dot_prod(t_coord u, t_coord v);
 double		op_solution_quad(double A, double B, double C);
 double		op_norm_pv(t_coord u, t_coord v, double teta);
@@ -161,10 +162,12 @@ t_coord		op_vector_use(t_coord u, t_coord v);
 t_coord		op_vect_n_lamda(double x, t_coord u);
 t_coord		orientation_ray(t_coord u, t_prog *prog);
 t_coord		op_vector_addition(t_coord u, t_coord v);
+t_coord		op_ortgl_projec_prll(t_coord u, t_coord v);
 t_coord		ray_launch(t_coord u, t_coord v, double t);
 t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
 t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, double *xy);
 t_ray		op_quadrique_value_sp(t_coord px,t_prog *prog);
+t_ray		op_quadrique_value_cy(t_coord px, t_prog *prog);
 t_quadric	op_values_polynome(t_ray ray, double rayon);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:54:57 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/18 14:33:31 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/20 16:16:55 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_quadric	op_values_polynome(t_ray ray, double rayon)
 	return (result);
 }
 
-double	inter_sp(t_prog	*prog, t_ray ray)
+double	inter_sp(t_prog *prog, t_ray ray)
 {
 	double		t;
 	double		rayon;

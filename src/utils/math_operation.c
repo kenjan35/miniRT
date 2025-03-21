@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:39:36 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/18 14:25:31 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/19 16:32:03 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,16 @@ t_coord	op_position_px(t_coord pos_cam, t_viewport view,
 	result = op_vector_addition(result, op_vect_n_lamda(xy[0], u));
 	result = op_vector_addition(result, op_vect_n_lamda(xy[1], v));
 	return (result);
+}
+
+t_coord	op_ortgl_projec_prll(t_coord u, t_coord v)
+{
+	t_coord	result;
+	double	lamda;
+
+	lamda = op_dot_prod(u, v) / op_dot_prod(u,u);
+	printf("\noperation orthogonal lamda = %f\n", op_dot_prod(u, v));
+	result = op_vect_n_lamda(lamda, u);
+	printf("\noperation orthogonal : x = %f, y = %f, z = %f\n", result.x, result.y, result.z);
+	return (result); 
 }

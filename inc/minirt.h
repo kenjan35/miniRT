@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/21 15:42:06 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/24 13:50:37 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ int			check_cylinder(char **split, t_object *obj);
 
 int			quit_window(t_prog *obj);
 int			key_close(int key, t_prog *prog);
+void		put_sp(t_prog *prog, double *xy, t_viewport view, t_object **allob);
 
 /************ Operation ************/
 

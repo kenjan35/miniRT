@@ -63,6 +63,10 @@ typedef struct s_prog
 {
 	void		*mlx;
 	void		*mlx_win;
+	void		*image;
+	int		pixel_bits;
+	int		line_bytes;
+	int		endian;
 	t_list		*obj;
 }	t_prog;
 
@@ -176,5 +180,6 @@ t_orient	take_orient_id(t_prog *prog, char *str);
 double		vector_numer(t_coord n, t_coord rp, t_coord px);
 double		vector_denom(t_coord n, t_coord v);
 double		time_inter_pl(t_coord px, t_prog *prog);
+void		put_image(t_prog *prog, int color);
 
 #endif

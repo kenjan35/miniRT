@@ -73,9 +73,9 @@ int	gradient(int y, t_color *colors)
 	int	r;
 	int	g;
 	int	b;
-	r = (colors->red - (y * 255) / WIN_WIDTH) % 255;
-	g = (colors->green - (y * 255) / WIN_WIDTH) % 255;
-	b = (colors->blue - (y * 255) / WIN_WIDTH) % 255;
+	r = ((int)(colors->red) - (y * 255) / WIN_WIDTH) % 255;
+	g = ((int)(colors->green) - (y * 255) / WIN_WIDTH) % 255;
+	b = ((int)(colors->blue) - (y * 255) / WIN_WIDTH) % 255;
 	color = (r << 16) | (g << 8) | b;
 	return (color);
 }
@@ -170,7 +170,7 @@ int	main(int ac, char *av[])
 		xy[0] = 0;
 		xy[1]++;
 	}*/
-
+/*
 	t_viewport	view;
 	t_coord		px_position;
 	t_coord		rt;
@@ -205,7 +205,8 @@ int	main(int ac, char *av[])
 		xy[0] = 0;
 		xy[1]++;
 	}
-
+*/
+	put_image(&prog);
 	//=====================================================
 	//			TEST CYLINDER
 	//=====================================================	t_viewport	view;

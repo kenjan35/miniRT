@@ -14,9 +14,9 @@
 
 void	set_color(t_object *obj, char **str)
 {
-	obj->color->red = ft_atoi((char *) str[0]);
-	obj->color->green = ft_atoi((char *) str[1]);
-	obj->color->blue = ft_atoi((char *) str[2]);
+	obj->color->red = (arc_atof((char *) str[0])) / 255;
+	obj->color->green = (arc_atof((char *) str[1]) / 255);
+	obj->color->blue = (arc_atof((char *) str[2]) / 255);
 }
 
 int	get_color(char *color, t_object *obj)
@@ -32,7 +32,7 @@ int	get_color(char *color, t_object *obj)
 	err = 0;
 	while (str[i] != NULL)
 	{
-		if (ft_atoi((char *) str[i]) < 0 || ft_atoi((char *) str[i]) > 255)
+		if (arc_atof((char *) str[i]) < 0 || arc_atof((char *) str[i]) > 255)
 		{
 			err = -1;
 			break ;

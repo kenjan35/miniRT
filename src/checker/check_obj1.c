@@ -38,7 +38,7 @@ int	check_camera(char **split, t_object *obj)
 		return (-1);
 	obj->id[0] = 'C';
 	obj->id[1] = '\0';
-	obj->size[0] = ft_atoi((char *) split[3]);
+	obj->size[0] = arc_atof((char *) split[3]);
 	return (1);
 }
 
@@ -52,6 +52,6 @@ int	check_light(char **split, t_object *obj)
 		return (-1);
 	obj->id[0] = 'L';
 	obj->id[1] = '\0';
-	obj->size[0] = ft_atoi((char *) split[2]);
+	obj->size[0] = arc_atof((char *) split[2]);
 	return (1);
 }

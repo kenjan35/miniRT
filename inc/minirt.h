@@ -30,9 +30,9 @@
 
 typedef struct s_color
 {
-	int	red;
-	int	green;
-	int	blue;
+	double	red;
+	double	green;
+	double	blue;
 }	t_color;
 
 typedef struct s_orient
@@ -49,7 +49,6 @@ typedef struct s_coord
 	double	z;
 }	t_coord;
 
-
 typedef struct s_object
 {
 	char		id[3];
@@ -63,10 +62,10 @@ typedef struct s_prog
 {
 	void		*mlx;
 	void		*mlx_win;
-	void		*image;
-	int		pixel_bits;
-	int		line_bytes;
-	int		endian;
+	void		*img;
+	int			pixel_bits;
+	int			line_bytes;
+	int			endian;
 	t_list		*obj;
 }	t_prog;
 
@@ -180,6 +179,16 @@ t_orient	take_orient_id(t_prog *prog, char *str);
 double		vector_numer(t_coord n, t_coord rp, t_coord px);
 double		vector_denom(t_coord n, t_coord v);
 double		time_inter_pl(t_coord px, t_prog *prog);
-void		put_image(t_prog *prog, int color);
+void		put_image(t_prog *prog);
+
+/************** Light *****************/
+
+t_color		get_ambient_intensity(t_prog *prog, t_object *sp);
+double		get_scalar(t_coord *n, t_prog *prog, t_coord *rray);
+double		get_diffuse_color(t_color *ambient, t_prog *prog, double *scalar);
+t_coord		normalize_sphere(t_coord *ro, t_ray *ray, double *time);
+
+void		check_list(t_prog *prog);
+double		light_sphere(t_color *colors, double intensity);
 
 #endif

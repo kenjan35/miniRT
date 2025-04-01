@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/19 16:08:52 by maandria         ###   ########.fr       */
+/*   Updated: 2025/03/21 15:42:06 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void		free_array(char **split);
 void		free_object(t_object *obj);
 void		print_error(int cipher, void *ptr);
 t_object	*find_id(t_prog *prog, char *id);
+t_object	**create_object(t_prog *prog);
 t_coord		take_coord_id(t_prog *prog, char *str);
 
 /************ config *************/

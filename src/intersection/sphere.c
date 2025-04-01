@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:54:57 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/20 16:16:55 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/03/21 16:50:28 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,20 @@ double	inter_sp(t_prog *prog, t_ray ray)
 	value = op_values_polynome(ray, rayon);
 	t = op_solution_quad(value.A, value.B, value.C);
 	return (t);
+}
+
+void	put_sp(t_prog *prog, double *xy, t_viewport view, t_object **allob)
+{
+	t_coord		px;
+	t_coord		rt;
+	t_ray		ray;
+	t_object	**res;
+	double		time;
+
+	res = create_object(prog);
+	px = mr_pixel_position(prog, view, xy);
+	ray = op_quadrique_value_sp(px, prog);
+	time = inter_sp(prog, ray);
+	rt = ray_launch(px, ray.v, time);
+
 }

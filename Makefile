@@ -14,7 +14,7 @@ SRC_INIT = $(addprefix src/init/, init_prog.c)
 
 SRC_LIGHT = $(addprefix src/light/, sphere.c)
 
-SRC_UTILS = $(addprefix src/utils/, open_file.c archer_atof.c free_array.c print_error.c math_utils.c math_operation.c quadrique_operation.c polynom_operation.c put_image.c)
+SRC_UTILS = $(addprefix src/utils/, open_file.c archer_atof.c free_array.c print_error.c math_utils.c math_operation.c quadrique_operation.c polynom_operation.c put_image.c build_objects.c)
 
 SRC_INTER = $(addprefix src/intersection/, intersection.c sphere.c cylinder.c plane.c)
 

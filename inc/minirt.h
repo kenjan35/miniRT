@@ -186,9 +186,10 @@ void		put_image(t_prog *prog);
 t_color		get_ambient_intensity(t_prog *prog, t_object *sp);
 double		get_scalar(t_coord *n, t_prog *prog, t_coord *rray);
 double		get_diffuse_color(t_color *ambient, t_prog *prog, double *scalar);
-t_coord		normalize_sphere(t_coord *ro, t_ray *ray, double *time);
+t_coord		normalize_sphere(t_coord *ro, t_object *obj);
 
 void		check_list(t_prog *prog);
 double		light_sphere(t_color *colors, double intensity);
+int			gradient(int y, t_color *colors);
 
 #endif

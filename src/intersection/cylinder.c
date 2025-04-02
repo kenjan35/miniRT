@@ -22,7 +22,7 @@ t_ray	op_quadrique_value_cy(t_coord px, t_prog *prog)
 
 	obj = find_id(prog, "cy");
 	coord = take_coord_id(prog, "cy");
-	printf(CYAN "\nquadrique cy vector : x = %f, y = %f, z = %f\n" RESET, coord.x, coord.y, coord.z);
+	//printf(CYAN "\nquadrique cy vector : x = %f, y = %f, z = %f\n" RESET, coord.x, coord.y, coord.z);
 	vector = orientation_ray(px, prog);
 	rs = orient2coord(obj->orient);
 	rs = op_ortgl_projec_prll(rs, coord);
@@ -45,7 +45,7 @@ double	inter_cy(t_prog	*prog, t_ray ray)
 	t_quadric	value;
 
 	tmp = prog;
-	t = 0.0;
+	t = INFINITY;
 	cy = find_id(tmp, "cy");
 	rayon = (cy->size[0] / 2);
 	value = op_values_polynome(ray, rayon);

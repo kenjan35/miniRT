@@ -35,12 +35,13 @@ void	put_image(t_prog *prog)
 	t_object	*obj;
 	t_color		*color;
 	double		xy[2];
-	t_coord		n;
-	double		intensity;
+	//t_coord		n;
+	//double		intensity;
 
 	check_list(prog);
 	view = mr_camera_init(1, prog);
-	obj = find_id(prog, "sp");
+	//obj = find_id(prog, "sp");
+	obj = find_id(prog, "cy");
 	color = obj->color;
 	xy[1] = 0;
 	prog->img = mlx_new_image(prog->mlx, WIN_LENGTH, WIN_WIDTH);
@@ -52,15 +53,18 @@ void	put_image(t_prog *prog)
 		while (xy[0] < (WIN_LENGTH))
 		{
 			px_position = mr_pixel_position(prog, view, xy);
-			ray = op_quadrique_value_sp(px_position, prog);
+			//ray = op_quadrique_value_sp(px_position, prog);
+			ray = op_quadrique_value_cy(px_position, prog);
 			//printf("main ray : x = %f, y = %f, z = %f\n", ray.v.x, ray.v.y, ray.v.z);
-			time = inter_sp(prog, ray);
+			//time = inter_sp(prog, ray);
+			time = inter_cy(prog, ray);
 			rt = ray_launch(px_position, ray.v, time);
-			n = normalize_sphere(&rt, &ray, &time);
 			if (time > 0)
 			{
-				intensity = get_pixel_color(prog, obj, &n, &rt);
-				*(int *)(buff + (int) xy[1] * prog->line_bytes + (int) xy[0] * (prog->pixel_bits / 8)) = (int)(intensity);
+				//n = normalize_sphere(&rt, obj);
+				//intensity = get_pixel_color(prog, obj, &n, &rt);
+				//*(int *)(buff + (int) xy[1] * prog->line_bytes + (int) xy[0] * (prog->pixel_bits / 8)) = (int)(intensity);
+				*(int *)(buff + (int) xy[1] * prog->line_bytes + (int) xy[0] * (prog->pixel_bits / 8)) = gradient(125, color);
 			}
 			xy[0]++;
 		}

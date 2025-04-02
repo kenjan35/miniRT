@@ -49,7 +49,7 @@ double	inter_sp(t_prog *prog, t_ray ray)
 	t_quadric	value;
 
 	tmp = prog;
-	t = 0.0;
+	t = INFINITY;
 	sp = find_id(tmp, "sp");
 	rayon = (sp->size[0] / 2);
 	value = op_values_polynome(ray, rayon);

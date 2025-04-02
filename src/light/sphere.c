@@ -45,15 +45,14 @@ double	get_scalar(t_coord *n, t_prog *prog, t_coord *rray)
 	return (scalar);
 }
 
-t_coord	normalize_sphere(t_coord *ro, t_ray *ray, double *time)
+t_coord	normalize_sphere(t_coord *ro, t_object *sp)
 {
 	t_coord	n;
 	double	n_norm;
 
-	(void) time;
-	n.x = ro->x - ray->rso.x;
-	n.y = ro->y - ray->rso.y;
-	n.z = ro->z - ray->rso.z;
+	n.x = ro->x - sp->coord->x;
+	n.y = ro->y - sp->coord->y;
+	n.z = ro->z - sp->coord->z;
 	n_norm = op_norm(n);
 	n.x /= n_norm;
 	n.y /= n_norm;
@@ -73,15 +72,12 @@ double	get_diffuse_color(t_color *ambient, t_prog *prog, double *scalar)
 	diffuse.red = sp->color->red;
 	diffuse.green = sp->color->green;
 	diffuse.blue = sp->color->blue;
-	/*diffuse.red *= (light->size[0] * (*scalar));
+	diffuse.red *= (light->size[0] * (*scalar));
 	diffuse.green *= (light->size[0] * (*scalar));
 	diffuse.blue *= (light->size[0] * (*scalar));
 	diffuse.red += ambient->red;
-	printf("bas ambient red %lf\n", ambient->red);
 	diffuse.green += ambient->green;
-	diffuse.blue += ambient->blue;*/
-	(void)scalar;
-	(void)ambient;
+	diffuse.blue += ambient->blue;
 	diffuse.red *= 255;
 	diffuse.green *= 255;
 	diffuse.blue *= 255;

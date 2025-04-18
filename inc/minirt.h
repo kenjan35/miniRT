@@ -6,14 +6,14 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/24 13:50:37 by maandria         ###   ########.fr       */
+/*   Updated: 2025/04/18 09:53:39 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 # define BUFFER_SIZE 42
-# define WIN_LENGTH 1600
+# define WIN_LENGTH 800
 # define WIN_WIDTH 800
 # define PI 3.1415
 # define RED "\033[1;31m"
@@ -56,6 +56,7 @@ typedef struct s_object
 	t_color		*color;
 	t_orient	*orient;
 	double		size[2];
+	double		time;
 }	t_object;
 
 typedef struct s_prog
@@ -67,6 +68,10 @@ typedef struct s_prog
 	int			line_bytes;
 	int			endian;
 	t_list		*obj;
+	t_list		*shapes;
+	t_object	*current_cy;
+	t_object	*current_sp;
+	t_object	*current_pl;
 }	t_prog;
 
 typedef struct	s_viewport
@@ -150,13 +155,12 @@ int			check_cylinder(char **split, t_object *obj);
 
 int			quit_window(t_prog *obj);
 int			key_close(int key, t_prog *prog);
-void		put_sp(t_prog *prog, double *xy, t_viewport view, t_object **allob);
 
 /************ Operation ************/
 
 double		op_norm(t_coord u);
-double		inter_sp(t_prog	*prog, t_ray ray);
-double		inter_cy(t_prog	*prog, t_ray ray);
+double		inter_sp(t_ray *ray, t_object *sp);
+double		inter_cy(t_ray *ray, t_object *cy);
 double		op_dot_prod(t_coord u, t_coord v);
 double		op_solution_quad(double A, double B, double C);
 double		op_norm_pv(t_coord u, t_coord v, double teta);
@@ -166,13 +170,16 @@ t_coord		op_vector_use(t_coord u, t_coord v);
 t_coord		op_vect_n_lamda(double x, t_coord u);
 t_coord		orientation_ray(t_coord u, t_prog *prog);
 t_coord		op_vector_addition(t_coord u, t_coord v);
+t_coord		op_vector_substraction(t_coord u, t_coord v);
 t_coord		op_ortgl_projec_prll(t_coord u, t_coord v);
 t_coord		ray_launch(t_coord u, t_coord v, double t);
 t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
 t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, double *xy);
-t_ray		op_quadrique_value_sp(t_coord px,t_prog *prog);
-t_ray		op_quadrique_value_cy(t_coord px, t_prog *prog);
+t_ray		op_quadrique_value_sp(t_coord px,t_prog *prog, t_object *sp);
+t_ray		op_quadrique_value_cy(t_coord px, t_prog *prog, t_object *cy);
 t_quadric	op_values_polynome(t_ray ray, double rayon);
+int			get_extremity(t_coord *px, t_coord *rt, t_object *cy);
+double		inter_cy_caps(t_object *cy, t_ray *ray);
 
 /************** Operation Plane *****************/
 
@@ -180,18 +187,24 @@ t_ray		op_quadrique_value_pl(t_coord px,t_prog *prog);
 t_orient	take_orient_id(t_prog *prog, char *str);
 double		vector_numer(t_coord n, t_coord rp, t_coord px);
 double		vector_denom(t_coord n, t_coord v);
-double		time_inter_pl(t_coord px, t_prog *prog);
-void		put_image(t_prog *prog);
+double		time_inter_pl(t_ray *ray, t_object *pl);
+void		put_image(t_prog *prog, t_viewport *view, char *buff);
+void		old_put_image(t_prog *prog);
 
 /************** Light *****************/
 
 t_color		get_ambient_intensity(t_prog *prog, t_object *sp);
-double		get_scalar(t_coord *n, t_prog *prog, t_coord *rray);
-double		get_diffuse_color(t_color *ambient, t_prog *prog, double *scalar);
+double		get_scalar(t_coord *n, t_coord *rray, t_object *light);
+double		get_diffuse_color(t_color *ambient, double *scalar, t_object *obj, t_object *light);
 t_coord		normalize_sphere(t_coord *ro, t_object *obj);
+t_coord		set_cylinder_normal(t_coord *rt, t_object *obj);
 
 void		check_list(t_prog *prog);
 double		light_sphere(t_color *colors, double intensity);
 int			gradient(int y, t_color *colors);
+void		set_render(t_prog *prog);
+t_list		*all_shape(t_prog *prog);
+//double		get_real_time(t_prog *prog, t_viewport *view, double *xy, t_ray *ray);
+t_object	*get_closest(t_prog *prog, t_viewport *view, double *xy, t_ray *ray);
 
 #endif

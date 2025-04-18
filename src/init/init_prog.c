@@ -33,6 +33,10 @@ int	init_prog(t_prog *prog)
 		return (0);
 	}
 	prog->obj = NULL;
+	prog->shapes = NULL;
+	prog->current_cy = NULL;
+	prog->current_sp = NULL;
+	prog->current_pl = NULL;
 	return (1);
 }
 

@@ -54,6 +54,14 @@ t_coord	take_coord_id(t_prog *prog, char *str)
 
 	tmp = prog->obj;
 	position = find_id(prog, str);
+	if (!position)
+	{
+		position_px.x = INFINITY;
+		position_px.y = INFINITY;
+		position_px.z = INFINITY;
+		prog->obj = tmp;
+		return (position_px);
+	}
 	position_px.x = position->coord->x;
 	position_px.y = position->coord->y;
 	position_px.z = position->coord->z;

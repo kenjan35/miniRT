@@ -12,9 +12,11 @@ SRC_CHECKER = $(addprefix src/checker/, check_object.c check_object_utils.c chec
 
 SRC_INIT = $(addprefix src/init/, init_prog.c)
 
-SRC_LIGHT = $(addprefix src/light/, sphere.c)
+SRC_LIGHT = $(addprefix src/light/, sphere.c cylinder.c)
 
-SRC_UTILS = $(addprefix src/utils/, open_file.c archer_atof.c free_array.c print_error.c math_utils.c math_operation.c quadrique_operation.c polynom_operation.c put_image.c build_objects.c)
+SRC_IMAGE = $(addprefix src/image/, put_image.c set_object.c ray_shape.c)
+
+SRC_UTILS = $(addprefix src/utils/, open_file.c archer_atof.c free_array.c print_error.c math_utils.c math_operation.c quadrique_operation.c polynom_operation.c build_objects.c)
 
 SRC_INTER = $(addprefix src/intersection/, intersection.c sphere.c cylinder.c plane.c)
 
@@ -28,11 +30,13 @@ OBJ_INIT = $(SRC_INIT:%.c=$(OBJ_DIR)%.o)
 
 OBJ_LIGHT = $(SRC_LIGHT:%.c=$(OBJ_DIR)%.o)
 
+OBJ_IMAGE = $(SRC_IMAGE:%.c=$(OBJ_DIR)%.o)
+
 OBJ_UTILS = $(SRC_UTILS:%.c=$(OBJ_DIR)%.o)
 
 OBJ_INTER = $(SRC_INTER:%.c=$(OBJ_DIR)%.o)
 
-OBJS = $(OBJ_MAIN) $(OBJ_SETUP) $(OBJ_CHECKER) $(OBJ_INIT) $(OBJ_LIGHT) $(OBJ_UTILS) $(OBJ_INTER)
+OBJS = $(OBJ_MAIN) $(OBJ_SETUP) $(OBJ_CHECKER) $(OBJ_INIT) $(OBJ_IMAGE) $(OBJ_LIGHT) $(OBJ_UTILS) $(OBJ_INTER)
 
 NAME = miniRT
 

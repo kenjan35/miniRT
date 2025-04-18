@@ -32,9 +32,9 @@ t_object	*find_id(t_prog *prog, char *id)
 	t_object	*object;
 
 	tmp_obj = prog->obj;
-	object = prog->obj->content;
 	while (prog->obj)
 	{
+		object = (t_object *) prog->obj->content;
 		if (ft_strncmp(object->id, id, ft_strlen(id)) == 0)
 		{
 			prog->obj = tmp_obj;
@@ -43,7 +43,6 @@ t_object	*find_id(t_prog *prog, char *id)
 		else
 		{
 			prog->obj = prog->obj->next;
-			object = prog->obj->content;
 		}
 	}
 	prog->obj = tmp_obj;
@@ -133,43 +132,6 @@ int	main(int ac, char *av[])
 	
 	/*********** Debut Test execution ***********/
 
-	//=====================================================
-	//				TEST SPHERE
-	//=====================================================
-	/*t_viewport	view;
-	t_coord		px_position;
-	t_coord		rt;
-	t_ray		ray;
-	double		time;
-	t_object	*obj;
-	t_color		*color;
-	double		xy[2];
-	
-	check_list(&prog);
-	view = mr_camera_init(1, &prog);
-	draw_gradient(&prog);
-	obj = find_id(&prog, "sp");
-	color = obj->color;
-	xy[1] = 0;
-	while (xy[1] < (WIN_WIDTH))
-	{
-		xy[0] = 0;
-		while (xy[0] < (WIN_LENGTH))
-		{
-			px_position = mr_pixel_position(&prog, view, xy);
-			ray = op_quadrique_value_sp(px_position, &prog);
-			printf("main ray : x = %f, y = %f, z = %f\n", ray.v.x, ray.v.y, ray.v.z);
-			time = inter_sp(&prog, ray);
-			rt = ray_launch(px_position, ray.v, time);
-			if (time > 0)
-				mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], gradient(xy[1], color));
-			if (xy[0] == (WIN_LENGTH / 2) && xy[1] == (WIN_WIDTH / 2))
-				mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], 0xffffff);
-			xy[0]++;
-		}
-		xy[0] = 0;
-		xy[1]++;
-	}*/
 /*
 	t_viewport	view;
 	t_coord		px_position;
@@ -206,7 +168,8 @@ int	main(int ac, char *av[])
 		xy[1]++;
 	}
 */
-	put_image(&prog);
+	set_render(&prog);
+	//old_put_image(&prog);
 	//=====================================================
 	//			TEST CYLINDER
 	//=====================================================	t_viewport	view;

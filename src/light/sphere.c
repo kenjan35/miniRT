@@ -6,7 +6,7 @@
 /*   By: atolojan <atolojan@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:05:36 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/26 11:24:40 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:33:45 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,12 @@ t_color	get_ambient_intensity(t_prog *prog, t_object *sp)
 	return (ambient);
 }
 
-double	get_scalar(t_coord *n, t_prog *prog, t_coord *rray)
+double	get_scalar(t_coord *n, t_coord *rray, t_object *light)
 {
 	double		scalar;
-	t_object	*light;
 	t_coord		light_dir;
 	double		norm;
 
-	light = find_id(prog, "L");
 	light_dir.x = light->coord->x - rray->x;
 	light_dir.y = light->coord->y - rray->y;
 	light_dir.z = light->coord->z - rray->z;
@@ -60,18 +58,22 @@ t_coord	normalize_sphere(t_coord *ro, t_object *sp)
 	return (n);
 }
 
-double	get_diffuse_color(t_color *ambient, t_prog *prog, double *scalar)
+double	get_diffuse_color(t_color *ambient, double *scalar, t_object *obj, t_object *light)
 {
 	t_color		diffuse;
-	t_object	*sp;
-	t_object	*light;
 	double		diff;
 
-	sp = find_id(prog, "sp");
-	light = find_id(prog, "L");
-	diffuse.red = sp->color->red;
-	diffuse.green = sp->color->green;
-	diffuse.blue = sp->color->blue;
+	//sphere
+	//sp = find_id(prog, "sp");
+	
+	//cylinder
+	//sp = find_id(prog, "cy");
+
+	//plane
+	//sp = find_id(prog, "pl");
+	diffuse.red = obj->color->red;
+	diffuse.green = obj->color->green;
+	diffuse.blue = obj->color->blue;
 	diffuse.red *= (light->size[0] * (*scalar));
 	diffuse.green *= (light->size[0] * (*scalar));
 	diffuse.blue *= (light->size[0] * (*scalar));
@@ -90,5 +92,3 @@ double	get_diffuse_color(t_color *ambient, t_prog *prog, double *scalar)
 	diff = ((int)diffuse.red << 16) | ((int)diffuse.green << 8) | ((int)diffuse.blue);
 	return (diff);
 }
-
-

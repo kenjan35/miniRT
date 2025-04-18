@@ -82,8 +82,6 @@ t_coord	op_ortgl_projec_prll(t_coord u, t_coord v)
 	double	lamda;
 
 	lamda = op_dot_prod(u, v) / op_dot_prod(u,u);
-	//printf("\noperation orthogonal lamda = %f\n", op_dot_prod(u, v));
 	result = op_vect_n_lamda(lamda, u);
-	//printf("\noperation orthogonal : x = %f, y = %f, z = %f\n", result.x, result.y, result.z);
 	return (result); 
 }

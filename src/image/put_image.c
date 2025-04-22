@@ -63,10 +63,12 @@ double	get_time_caps(t_prog *prog, t_coord *rt, t_ray *ray, double *time)
 {
 	double	time_caps;
 
+	(void) rt;
+	(void) time;
 	time_caps = INFINITY;
 	time_caps = inter_cy_caps(prog->current_cy, ray);
-	if (get_extremity(&(ray->ro), rt, prog->current_cy) == 0)
-		*time = 0;
+	//if (get_extremity(&(ray->ro), rt, prog->current_cy) == 0)
+	//	*time = 0;
 	return (time_caps);
 }
 
@@ -125,13 +127,14 @@ void	put_image(t_prog *prog, t_viewport *view, char *buff)
 		xy[0] = -1;
 		while (++xy[0] < (WIN_LENGTH))
 		{
-			obj = get_closest(prog, view, xy, &ray);
+			obj = get_closest(prog, view, xy);
 			if (!obj)
 				continue ;
+			ray = op_quadrique_value_sp(prog->px_pos, prog, obj);
 			rt = ray_launch(ray.ro, ray.v, obj->time);
 			if (obj->id[1] == 'y')
 				time_caps = get_time_caps(prog, &rt, &ray, &(obj->time));
-			if (time_caps < INFINITY)
+			if (time_caps < INFINITY && time_caps > 0)
 				set_intensity_caps(prog, &rt, xy, buff);
 			if (obj->time > 0)
 				set_intensity(prog, &rt, xy, buff);

@@ -67,6 +67,7 @@ typedef struct s_prog
 	int			pixel_bits;
 	int			line_bytes;
 	int			endian;
+	t_coord		px_pos;
 	t_list		*obj;
 	t_list		*shapes;
 	t_object	*current_cy;
@@ -205,6 +206,6 @@ int			gradient(int y, t_color *colors);
 void		set_render(t_prog *prog);
 t_list		*all_shape(t_prog *prog);
 //double		get_real_time(t_prog *prog, t_viewport *view, double *xy, t_ray *ray);
-t_object	*get_closest(t_prog *prog, t_viewport *view, double *xy, t_ray *ray);
+t_object	*get_closest(t_prog *prog, t_viewport *view, double *xy);
 
 #endif

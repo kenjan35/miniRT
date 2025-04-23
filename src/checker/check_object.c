@@ -45,6 +45,7 @@ int	check_if_valid(char **split, t_object *obj)
 
 t_object	*init_object(void)
 {
+	static int	i = 0;
 	t_object	*obj;
 
 	obj = (t_object *) malloc(sizeof(t_object));
@@ -64,6 +65,8 @@ t_object	*init_object(void)
 		free(obj);
 		return (NULL);
 	}
+	obj->num = i;
+	i++;
 	return (obj);
 }
 

@@ -140,8 +140,7 @@ double	set_shape_time(t_coord *px_position, t_prog *prog, t_object *obj)
 		rt = ray_launch(ray.ro, ray.v, time);
 		if (get_extremity(&(ray.ro), &rt, obj) == 1)
 			return (time);
-		else
-			return (0);
+		return (0);
 	}
 	else if (obj->id[1] == 'p')
 	{

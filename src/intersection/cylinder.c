@@ -150,7 +150,7 @@ double	inter_cy_caps(t_object *cy, t_ray *ray)
 	tmp = op_vector_substraction(ray_caps, c_caps);
 	if (op_norm(tmp) <= (cy->size[0] / 2))
 		return (t);
-	return (INFINITY);
+	return (0);
 }
 
 double	inter_cy(t_ray *ray, t_object *cy)

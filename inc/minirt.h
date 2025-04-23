@@ -57,6 +57,7 @@ typedef struct s_object
 	t_orient	*orient;
 	double		size[2];
 	double		time;
+	int			num;
 }	t_object;
 
 typedef struct s_prog
@@ -207,5 +208,7 @@ void		set_render(t_prog *prog);
 t_list		*all_shape(t_prog *prog);
 //double		get_real_time(t_prog *prog, t_viewport *view, double *xy, t_ray *ray);
 t_object	*get_closest(t_prog *prog, t_viewport *view, double *xy);
+double		set_shape_time(t_coord *px_position, t_prog *prog, t_object *obj);
+int			in_shadow(t_prog *prog, t_object *light, t_coord *rt, t_coord *normal);
 
 #endif

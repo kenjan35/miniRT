@@ -23,7 +23,21 @@ double	get_pixel_color(t_prog *prog, t_object *obj, \
 	light = find_id(prog, "L");
 	ambient = get_ambient_intensity(prog, obj);
 	scalar = get_scalar(norm, rray, light);
-	diffuse_color = get_diffuse_color(&ambient, &scalar, obj, light);
+	if (in_shadow(prog, light, rray, norm) == 1)
+	{
+		ambient.red *= 255;
+		ambient.green *= 255;
+		ambient.blue *= 255;
+		if (ambient.red > 255)
+			ambient.red = 255;
+		if (ambient.green > 255)
+			ambient.green = 255;
+		if (ambient.blue > 255)
+			ambient.blue = 255;
+		diffuse_color = ((int)ambient.red << 16) | ((int)ambient.green << 8) | ((int)ambient.blue);
+	}
+	else
+		diffuse_color = get_diffuse_color(&ambient, &scalar, obj, light);
 	return (diffuse_color);
 }
 
@@ -67,8 +81,8 @@ double	get_time_caps(t_prog *prog, t_coord *rt, t_ray *ray, double *time)
 	(void) time;
 	time_caps = INFINITY;
 	time_caps = inter_cy_caps(prog->current_cy, ray);
-	//if (get_extremity(&(ray->ro), rt, prog->current_cy) == 0)
-	//	*time = 0;
+	if (get_extremity(&(ray->ro), rt, prog->current_cy) == 0)
+		*time = 0;
 	return (time_caps);
 }
 
@@ -135,7 +149,10 @@ void	put_image(t_prog *prog, t_viewport *view, char *buff)
 			if (obj->id[1] == 'y')
 				time_caps = get_time_caps(prog, &rt, &ray, &(obj->time));
 			if (time_caps < INFINITY && time_caps > 0)
+			{
+				//rt = ray_launch(ray.ro, ray.v, time_caps);
 				set_intensity_caps(prog, &rt, xy, buff);
+			}
 			if (obj->time > 0)
 				set_intensity(prog, &rt, xy, buff);
 		}

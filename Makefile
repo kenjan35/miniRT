@@ -12,7 +12,7 @@ SRC_CHECKER = $(addprefix src/checker/, check_object.c check_object_utils.c chec
 
 SRC_INIT = $(addprefix src/init/, init_prog.c)
 
-SRC_LIGHT = $(addprefix src/light/, sphere.c cylinder.c)
+SRC_LIGHT = $(addprefix src/light/, sphere.c cylinder.c hard_shadow.c)
 
 SRC_IMAGE = $(addprefix src/image/, put_image.c set_object.c ray_shape.c)
 

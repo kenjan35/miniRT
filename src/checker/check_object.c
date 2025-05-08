@@ -45,7 +45,6 @@ int	check_if_valid(char **split, t_object *obj)
 
 t_object	*init_object(void)
 {
-	static int	i = 0;
 	t_object	*obj;
 
 	obj = (t_object *) malloc(sizeof(t_object));
@@ -65,9 +64,30 @@ t_object	*init_object(void)
 		free(obj);
 		return (NULL);
 	}
-	obj->num = i;
-	i++;
 	return (obj);
+}
+
+void	failed_data(t_prog *prog, char **str, t_object *obj, t_list **list)
+{
+	t_list		*tmp;
+	t_list		*current;
+
+	free_array(str);
+	free_object(obj);
+	tmp = *list;
+	while (tmp)
+	{
+		current = tmp;
+		obj = current->content;
+		free_object(obj);
+		tmp = tmp->next;
+		free(current);
+	}
+	mlx_destroy_window(prog->mlx, prog->mlx_win);
+	mlx_destroy_display(prog->mlx);
+	free(prog->mlx);
+	ft_putstr_fd(RED "Error :\nComponent problems\n" RESET, 2);
+	exit(1);
 }
 
 void	set_data(char *file, t_list **list, t_prog *prog)
@@ -75,8 +95,7 @@ void	set_data(char *file, t_list **list, t_prog *prog)
 	t_object	*obj;
 	char		**str;
 	int			fd;
-	t_list		*tmp;
-	t_list		*current;
+	static int	i = 0;
 
 	fd = open_fd(file);
 	str = get_line(fd);
@@ -96,25 +115,10 @@ void	set_data(char *file, t_list **list, t_prog *prog)
 			continue ;
 		}
 		else if (check_if_valid(str, obj) == -1 || !obj)
-		{
-			free_array(str);
-			free_object(obj);
-			tmp = *list;
-			while (tmp)
-			{
-				current = tmp;
-				obj = current->content;
-				free_object(obj);
-				tmp = tmp->next;
-				free(current);
-			}
-			mlx_destroy_window(prog->mlx, prog->mlx_win);
-			mlx_destroy_display(prog->mlx);
-			free(prog->mlx);
-			ft_putstr_fd(RED "Error :\nComponent problems\n" RESET, 2);
-			exit(1);
-		}
+			failed_data(prog, str, obj, list);
 		ft_lstadd_back(list, ft_lstnew(obj));
+		obj->num = i;
+		i++;
 		free_array(str);
 		str = get_line(fd);
 	}

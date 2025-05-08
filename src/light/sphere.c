@@ -6,7 +6,7 @@
 /*   By: atolojan <atolojan@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:05:36 by atolojan          #+#    #+#             */
-/*   Updated: 2025/04/09 16:33:45 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/04/29 16:05:46 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ double	get_scalar(t_coord *n, t_coord *rray, t_object *light)
 	double		scalar;
 	t_coord		light_dir;
 	double		norm;
+	//double		light_current;
 
 	light_dir.x = light->coord->x - rray->x;
 	light_dir.y = light->coord->y - rray->y;
@@ -37,7 +38,9 @@ double	get_scalar(t_coord *n, t_coord *rray, t_object *light)
 	light_dir.x /= norm;
 	light_dir.y /= norm;
 	light_dir.z /= norm;
+	//light_current = light->size[0] * 0.1;
 	scalar = op_dot_prod(*n, light_dir);
+	//scalar *= light_current;
 	if (scalar <= 0)
 		scalar = 0;
 	return (scalar);
@@ -63,14 +66,6 @@ double	get_diffuse_color(t_color *ambient, double *scalar, t_object *obj, t_obje
 	t_color		diffuse;
 	double		diff;
 
-	//sphere
-	//sp = find_id(prog, "sp");
-	
-	//cylinder
-	//sp = find_id(prog, "cy");
-
-	//plane
-	//sp = find_id(prog, "pl");
 	diffuse.red = obj->color->red;
 	diffuse.green = obj->color->green;
 	diffuse.blue = obj->color->blue;

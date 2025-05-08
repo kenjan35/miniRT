@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/04/18 09:53:39 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/01 11:54:05 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ typedef struct s_object
 	int			num;
 }	t_object;
 
+typedef struct	s_viewport
+{
+	double		length;
+	double		width;
+}	t_viewport;
+
 typedef struct s_prog
 {
 	void		*mlx;
@@ -69,18 +75,13 @@ typedef struct s_prog
 	int			line_bytes;
 	int			endian;
 	t_coord		px_pos;
+	t_viewport	view;
 	t_list		*obj;
 	t_list		*shapes;
-	t_object	*current_cy;
-	t_object	*current_sp;
-	t_object	*current_pl;
+	t_object	*current_obj;
+	t_object	*to_move;
+	double		pixel;
 }	t_prog;
-
-typedef struct	s_viewport
-{
-	double		length;
-	double		width;
-}	t_viewport;
 
 typedef struct s_camunit
 {
@@ -190,7 +191,7 @@ t_orient	take_orient_id(t_prog *prog, char *str);
 double		vector_numer(t_coord n, t_coord rp, t_coord px);
 double		vector_denom(t_coord n, t_coord v);
 double		time_inter_pl(t_ray *ray, t_object *pl);
-void		put_image(t_prog *prog, t_viewport *view, char *buff);
+void		put_image(t_prog *prog, t_viewport *view, char *buff, double *time_caps);
 void		old_put_image(t_prog *prog);
 
 /************** Light *****************/
@@ -206,9 +207,14 @@ double		light_sphere(t_color *colors, double intensity);
 int			gradient(int y, t_color *colors);
 void		set_render(t_prog *prog);
 t_list		*all_shape(t_prog *prog);
-//double		get_real_time(t_prog *prog, t_viewport *view, double *xy, t_ray *ray);
 t_object	*get_closest(t_prog *prog, t_viewport *view, double *xy);
 double		set_shape_time(t_coord *px_position, t_prog *prog, t_object *obj);
 int			in_shadow(t_prog *prog, t_object *light, t_coord *rt, t_coord *normal);
+double		get_time_caps(t_prog *prog, t_coord *rt, t_ray *ray, double *time);
+double		set_cy_time(t_ray *ray, t_prog *prog, t_object *obj);
+
+int			rotate(int key, t_prog *prog);
+int			translate(int key, t_prog *prog);
+int			get_object(int key, int x, int y, t_prog *prog);
 
 #endif

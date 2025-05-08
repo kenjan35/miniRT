@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:31:12 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/21 10:14:46 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:59:28 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	check_light(char **split, t_object *obj)
 	if (get_coord(split[1], obj) == -1)
 		return (-1);
 	if (get_size(split[2], 1) == -1)
+		return (-1);
+	if (get_color(split[3], obj) == -1)
 		return (-1);
 	obj->id[0] = 'L';
 	obj->id[1] = '\0';

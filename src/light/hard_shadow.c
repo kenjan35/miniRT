@@ -16,9 +16,9 @@ t_coord	set_origin(t_coord *rt, t_coord *norm)
 {
 	t_coord	origin;
 
-	origin.x = rt->x + pow(10.0, -10.0) * norm->x;
-	origin.y = rt->y + pow(10.0, -10.0) * norm->y;
-	origin.z = rt->z + pow(10.0, -10.0) * norm->z;
+	origin.x = rt->x + pow(10.0, -20.0) * norm->x;
+	origin.y = rt->y + pow(10.0, -20.0) * norm->y;
+	origin.z = rt->z + pow(10.0, -20.0) * norm->z;
 	return (origin);
 }
 
@@ -26,7 +26,6 @@ double	set_shadow_time(t_coord *origin, t_coord *shad, t_prog *prog, t_object *o
 {
 	double	time;
 	t_ray	ray;
-	t_coord	rt;
 
 	ray = op_quadrique_value_sp(*origin, prog, obj);
 	ray.v = *shad;
@@ -34,17 +33,10 @@ double	set_shadow_time(t_coord *origin, t_coord *shad, t_prog *prog, t_object *o
 	if (obj->id[1] == 'l')
 		time = time_inter_pl(&ray, obj);
 	else if (obj->id[1] == 'y')
-	{
-		time = inter_cy(&ray, obj);
-		rt = ray_launch(ray.ro, ray.v, time);
-//		if (get_extremity(&(ray.ro), &rt, obj) == 1)
-//			return (time);
-//		return (0);
-	}
+		time = set_cy_time(&ray, prog, obj);
 	else if (obj->id[1] == 'p')
 		time = inter_sp(&ray, obj);
 	return (time);
-
 }
 
 int	in_shadow(t_prog *prog, t_object *light, t_coord *rt, t_coord *normal)
@@ -64,7 +56,7 @@ int	in_shadow(t_prog *prog, t_object *light, t_coord *rt, t_coord *normal)
 	while (tmp)
 	{
 		obj = (t_object *) (tmp->content);
-		if (obj->num != prog->current_cy->num)
+		if (obj->num != prog->current_obj->num)
 		{
 			time = set_shadow_time(&origin, &shad, prog, obj);
 			if (time > 0 && time < op_norm(shad))

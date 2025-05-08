@@ -14,9 +14,17 @@
 
 void	set_orient(t_object *obj, char **str)
 {
+	double	norm;
+	t_coord	cy_axis;
+
 	obj->orient->or_x = arc_atof((char *) str[0]);
 	obj->orient->or_y = arc_atof((char *) str[1]);
 	obj->orient->or_z = arc_atof((char *) str[2]);
+	cy_axis = orient2coord(obj->orient);
+	norm = op_norm(cy_axis);
+	obj->orient->or_x /= norm;
+	obj->orient->or_y /= norm;
+	obj->orient->or_z /= norm;
 }
 
 int	get_orient(char *orient, t_object *obj)

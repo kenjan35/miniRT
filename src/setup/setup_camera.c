@@ -29,9 +29,6 @@ t_viewport	mr_camera_init(double n, t_prog *prog)
 	ratio_px = WIN_LENGTH / WIN_WIDTH;
 	view.width = (2 * n) * tan(angle / 2);
 	view.length = ratio_px * view.width;
-	printf("FOV radian : %f\n", angle);
-	printf(CYAN "Camera viewport : " RESET);
-	printf("length = %f\twidth = %f\n", view.length, view.width);
 	prog->obj = p_tmp;
 	return (view);
 }
@@ -95,6 +92,7 @@ t_coord	mr_pixel_position(t_prog *prog, t_viewport view, double *xy)
 	t_coord		result;
 	t_camunit	cam;
 
+	xy[0] += prog->pixel;
 	position_cam = find_id(prog, "C");
 	cam.c_avant = orient2coord(position_cam->orient);
 	p_cam = take_coord_id(prog, "C");

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/18 14:29:24 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/01 11:19:06 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	check_list(t_prog *prog)
 	tmp_obj = tmp->obj;
 	while (tmp->obj)
 	{
-			object = tmp->obj->content;
-			printf("Id : %s\n", object->id);
-			tmp->obj = tmp->obj->next;
+		object = tmp->obj->content;
+		printf("Id : %s , num : %d\n", object->id, object->num);
+		tmp->obj = tmp->obj->next;
 	}
 	tmp->obj = tmp_obj;
 }
@@ -111,8 +111,7 @@ int	main(int ac, char *av[])
 {
 	t_prog	prog;
 
-	(void)ac;
-	if (!av[1])
+	if (!av[1] || ac == 1)
 	{
 		print_error(3, NULL);
 		exit(1);
@@ -129,85 +128,10 @@ int	main(int ac, char *av[])
 		ft_putstr_fd(RED "Error :\nWrong number of element\n" RESET, 2);
 		exit(1);
 	}
-	
-	/*********** Debut Test execution ***********/
-
-/*
-	t_viewport	view;
-	t_coord		px_position;
-	t_coord		rt;
-	t_ray		ray;
-	double		time;
-	t_object	*obj;
-	t_color		*color;
-	double		xy[2];
-	
-	check_list(&prog);
-	view = mr_camera_init(1, &prog);
-	//draw_gradient(&prog);
-	obj = find_id(&prog, "pl");
-	color = obj->color;
-	xy[1] = 0;
-	while (xy[1] < (WIN_WIDTH))
-	{
-		xy[0] = 0;
-		while (xy[0] < (WIN_LENGTH))
-		{
-			px_position = mr_pixel_position(&prog, view, xy);
-			ray = op_quadrique_value_pl(px_position, &prog);
-			printf("main ray : x = %f, y = %f, z = %f\n", ray.v.x, ray.v.y, ray.v.z);
-			time = time_inter_pl(px_position, &prog);
-			rt = ray_launch(px_position, ray.v, time);
-			if (time > 0)
-				mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], gradient(xy[1], color));
-			if (xy[0] == (WIN_LENGTH / 2) && xy[1] == (WIN_WIDTH / 2))
-				mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], 0xffffff);
-			xy[0]++;
-		}
-		xy[0] = 0;
-		xy[1]++;
-	}
-*/
 	set_render(&prog);
-	//old_put_image(&prog);
-	//=====================================================
-	//			TEST CYLINDER
-	//=====================================================	t_viewport	view;
-	// t_coord		px_position;
-	// t_coord		rt;
-	// t_ray		ray;
-	// double		time;
-	// t_object	*obj;
-	// t_color		*color;
-	// double		xy[2];
-	
-	// check_list(&prog);
-	// view = mr_camera_init(1, &prog);
-	// draw_gradient(&prog);
-	// obj = find_id(&prog, "cy");
-	// color = obj->color;
-	// xy[1] = 0;
-	// while (xy[1] < (WIN_WIDTH))
-	// {
-	// 	xy[0] = 0;
-	// 	while (xy[0] < (WIN_LENGTH))
-	// 	{
-	// 		px_position = mr_pixel_position(&prog, view, xy);
-	// 		ray = op_quadrique_value_cy(px_position, &prog);
-	// 		// printf("main ray : x = %f, y = %f, z = %f\n", ray.v.x, ray.v.y, ray.v.z);
-	// 		time = inter_cy(&prog, ray);
-	// 		rt = ray_launch(px_position, ray.v, time);
-	// 		if (time > 0)
-	// 			mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], gradient(xy[1], color));
-	// 		if (xy[0] == (WIN_LENGTH / 2) && xy[1] == (WIN_WIDTH / 2))
-	// 			mlx_pixel_put(prog.mlx, prog.mlx_win, xy[0], xy[1], 0xffffff);
-	// 		xy[0]++;
-	// 	}
-	// 	xy[0] = 0;
-	// 	xy[1]++;
-	// }
-	/*********** Fin Test execution ***********/
 	check_list(&prog);
+	mlx_mouse_hook(prog.mlx_win, get_object, &prog);
+	mlx_key_hook(prog.mlx_win, translate, &prog);
 	mlx_hook(prog.mlx_win, 17, 1L << 0, quit_window, &prog);
 	mlx_hook(prog.mlx_win, 2, 1L << 0, key_close, &prog);
 	mlx_loop(prog.mlx);

@@ -32,11 +32,11 @@ int	init_prog(t_prog *prog)
 		free(prog->mlx);
 		return (0);
 	}
+	prog->pixel = 1;
 	prog->obj = NULL;
 	prog->shapes = NULL;
-	prog->current_cy = NULL;
-	prog->current_sp = NULL;
-	prog->current_pl = NULL;
+	prog->current_obj = NULL;
+	prog->to_move = NULL;
 	return (1);
 }
 

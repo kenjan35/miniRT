@@ -67,7 +67,7 @@ t_coord	take_coord_id(t_prog *prog, char *str)
 }
 
 t_coord	set_cam_haut(t_coord c_avant)
-{
+{/*
 	t_coord	result;
 
 	result = (t_coord){0, 0, 0};
@@ -81,6 +81,26 @@ t_coord	set_cam_haut(t_coord c_avant)
 		result = (t_coord){1, 0, 0};
 	else if (c_avant.x && c_avant.y && !c_avant.z)
 		result = (t_coord){0, 0, 1};
+	return (result);*/
+
+	t_coord	world_up;
+	t_coord	right;
+	t_coord	result;
+	double	norm;
+
+	world_up = (t_coord){0, 0, 1};
+	if (fabs(c_avant.y) < pow(10, -6) && fabs(c_avant.x) < pow(10, -6))
+		world_up = (t_coord){1, 0, 0};
+	right = op_cross_prod(world_up, c_avant);
+	norm = op_norm(right);
+	right.x /= norm;
+	right.y /= norm;
+	right.z /= norm;
+	result = op_cross_prod(c_avant, right);
+	norm = op_norm(result);
+	result.x /= norm;
+	result.y /= norm;
+	result.z /= norm;
 	return (result);
 }
 

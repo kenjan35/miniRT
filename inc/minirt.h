@@ -85,8 +85,8 @@ typedef struct s_prog
 
 typedef struct s_camunit
 {
-	t_coord		c_avant;
-	t_coord		c_haut;
+	t_coord		c_forward;
+	t_coord		c_up;
 }	t_camunit;
 
 typedef struct s_ray

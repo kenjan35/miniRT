@@ -65,11 +65,11 @@ t_coord	op_position_px(t_coord pos_cam, t_viewport view,
 	t_coord		v;
 	t_coord		result;
 
-	u = op_vpixel_unit(view, cam.c_avant, cam.c_haut, 0);
-	v = op_vpixel_unit(view, cam.c_avant, u, 1);
+	u = op_vpixel_unit(view, cam.c_forward, cam.c_up, 0);
+	v = op_vpixel_unit(view, cam.c_forward, u, 1);
 	result = (t_coord){0, 0, 0};
 	result = op_vector_addition(result, pos_cam);
-	result = op_vector_addition(result, cam.c_avant);
+	result = op_vector_addition(result, cam.c_forward);
 	result = op_vector_addition(result, op_vector_use(u, v));
 	result = op_vector_addition(result, op_vect_n_lamda(xy[0], u));
 	result = op_vector_addition(result, op_vect_n_lamda(xy[1], v));

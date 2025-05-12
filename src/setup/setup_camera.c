@@ -66,20 +66,20 @@ t_coord	take_coord_id(t_prog *prog, char *str)
 	return (position_px);
 }
 
-t_coord	set_cam_haut(t_coord c_avant)
+t_coord	set_cam_up(t_coord c_forward)
 {/*
 	t_coord	result;
 
 	result = (t_coord){0, 0, 0};
-	if (c_avant.x && !c_avant.y && !c_avant.z)
+	if (c_forward.x && !c_forward.y && !c_forward.z)
 		result = (t_coord){0, 0, 1};
-	else if (c_avant.y && !c_avant.x && !c_avant.z)
+	else if (c_forward.y && !c_forward.x && !c_forward.z)
 		result = (t_coord){0, 0, 1};
-	else if (c_avant.z < 0 && !c_avant.y && !c_avant.x)
+	else if (c_forward.z < 0 && !c_forward.y && !c_forward.x)
 		result = (t_coord){-1, 0, 0};
-	else if (c_avant.z > 0 && !c_avant.y && !c_avant.x)
+	else if (c_forward.z > 0 && !c_forward.y && !c_forward.x)
 		result = (t_coord){1, 0, 0};
-	else if (c_avant.x && c_avant.y && !c_avant.z)
+	else if (c_forward.x && c_forward.y && !c_forward.z)
 		result = (t_coord){0, 0, 1};
 	return (result);*/
 
@@ -89,14 +89,14 @@ t_coord	set_cam_haut(t_coord c_avant)
 	double	norm;
 
 	world_up = (t_coord){0, 0, 1};
-	if (fabs(c_avant.y) < pow(10, -6) && fabs(c_avant.x) < pow(10, -6))
+	if (fabs(c_forward.y) < pow(10, -6) && fabs(c_forward.x) < pow(10, -6))
 		world_up = (t_coord){1, 0, 0};
-	right = op_cross_prod(world_up, c_avant);
+	right = op_cross_prod(world_up, c_forward);
 	norm = op_norm(right);
 	right.x /= norm;
 	right.y /= norm;
 	right.z /= norm;
-	result = op_cross_prod(c_avant, right);
+	result = op_cross_prod(c_forward, right);
 	norm = op_norm(result);
 	result.x /= norm;
 	result.y /= norm;
@@ -114,20 +114,20 @@ t_coord	mr_pixel_position(t_prog *prog, t_viewport view, double *xy)
 
 	xy[0] += prog->pixel;
 	position_cam = find_id(prog, "C");
-	cam.c_avant = orient2coord(position_cam->orient);
+	cam.c_forward = orient2coord(position_cam->orient);
 	p_cam = take_coord_id(prog, "C");
-	if (cam.c_avant.z && cam.c_avant.x && !cam.c_avant.y)
+	if (cam.c_forward.z && cam.c_forward.x && !cam.c_forward.y)
 	{
 		orient_cam = (t_coord){0, 1, 0};
-		cam.c_haut = op_cross_prod(cam.c_avant, orient_cam);
+		cam.c_up = op_cross_prod(cam.c_forward, orient_cam);
 	}
-	else if (cam.c_avant.z && cam.c_avant.y && !cam.c_avant.x)
+	else if (cam.c_forward.z && cam.c_forward.y && !cam.c_forward.x)
 	{
 		orient_cam = (t_coord){1, 0, 0};
-		cam.c_haut = op_cross_prod(cam.c_avant, orient_cam);
+		cam.c_up = op_cross_prod(cam.c_forward, orient_cam);
 	}
 	else
-		cam.c_haut = set_cam_haut(cam.c_avant);
+		cam.c_up = set_cam_up(cam.c_forward);
 	result = op_position_px(p_cam, view, cam, xy);
 	return (result);
 }

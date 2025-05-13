@@ -64,3 +64,15 @@ int	check_element(t_list **list)
 		return (0);
 	return (1);
 }
+
+int	get_size(char *other, double max)
+{
+	if (!other || arc_atof((char *) other) > max || \
+		arc_atof((char *) other) < 0)
+		return (-1);
+	if (arc_atof((char *) other) == 0)
+		return (0);
+	if (arc_atof((char *) other) > 0)
+		return (1);
+	return (1);
+}

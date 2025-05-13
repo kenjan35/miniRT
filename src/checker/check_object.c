@@ -12,18 +12,6 @@
 
 #include "../../inc/minirt.h"
 
-int	get_size(char *other, double max)
-{
-	if (!other || arc_atof((char *) other) > max || \
-		arc_atof((char *) other) < 0)
-		return (-1);
-	if (arc_atof((char *) other) == 0)
-		return (0);
-	if (arc_atof((char *) other) > 0)
-		return (1);
-	return (1);
-}
-
 int	check_if_valid(char **split, t_object *obj)
 {
 	if (!split[0] || obj == NULL)
@@ -90,6 +78,20 @@ void	failed_data(t_prog *prog, char **str, t_object *obj, t_list **list)
 	exit(1);
 }
 
+char	**get_fd_line(char *file, int *fd)
+{
+	char	**str;
+
+	*fd = open_fd(file);
+	str = get_line(*fd);
+	if (str == NULL)
+	{
+		print_error(3, NULL);
+		exit(1);
+	}
+	return (str);
+}
+
 void	set_data(char *file, t_list **list, t_prog *prog)
 {
 	t_object	*obj;
@@ -97,13 +99,7 @@ void	set_data(char *file, t_list **list, t_prog *prog)
 	int			fd;
 	static int	i = 0;
 
-	fd = open_fd(file);
-	str = get_line(fd);
-	if (str == NULL)
-	{
-		print_error(3, NULL);
-		exit(1);
-	}
+	str = get_fd_line(file, &fd);
 	while (str)
 	{
 		obj = init_object();

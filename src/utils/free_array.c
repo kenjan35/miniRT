@@ -12,11 +12,21 @@
 
 #include "../../inc/minirt.h"
 
-void	free_object(t_object *obj)
+void	free_object(void *content)
 {
-	free(obj->coord);
-	free(obj->color);
-	free(obj->orient);
+	t_object	*obj;
+
+	if (content == NULL)
+		return ;
+	obj = (t_object *)content;
+	if (obj == NULL)
+		return ;
+	if (obj->coord)
+		free(obj->coord);
+	if (obj->color)
+		free(obj->color);
+	if (obj->orient)
+		free(obj->orient);
 	free(obj);
 }
 

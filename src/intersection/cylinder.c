@@ -139,10 +139,16 @@ double	inter_cy_caps(t_object *cy, t_ray *ray)
 	t2 = inter_caps_low(&c_caps, cy, ray);
 	ray_caps = ray_launch(ray->ro, ray->v, t2);
 	tmp[1] = op_vector_substraction(ray_caps, c_caps);
-	if (op_norm(tmp[0]) <= (cy->size[0] / 2) + pow(10, -6) && t < t2)
+	if (op_norm(tmp[0]) <= (cy->size[0] / 2) + EPSILON && t < t2 && t > pow(10, -6))
+	{
+		cy->id[0] = '1';
 		return (t);
-	else if (op_norm(tmp[1]) <= (cy->size[0] / 2) + pow(10, -6) && t2 < t)
+	}
+	else if (op_norm(tmp[1]) <= (cy->size[0] / 2) + EPSILON && t2 < t && t2 > pow(10, -6))
+	{
+		cy->id[0] = '2';
 		return (t2);
+	}
 	return (0);
 }
 

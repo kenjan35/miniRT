@@ -16,9 +16,9 @@ t_coord	set_origin(t_coord *rt, t_coord *norm)
 {
 	t_coord	origin;
 
-	origin.x = rt->x + pow(10.0, -20.0) * norm->x;
-	origin.y = rt->y + pow(10.0, -20.0) * norm->y;
-	origin.z = rt->z + pow(10.0, -20.0) * norm->z;
+	origin.x = rt->x + EPSILON * norm->x;
+	origin.y = rt->y + EPSILON * norm->y;
+	origin.z = rt->z + EPSILON * norm->z;
 	return (origin);
 }
 

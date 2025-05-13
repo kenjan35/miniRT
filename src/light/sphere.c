@@ -24,13 +24,14 @@ t_color	get_ambient_intensity(t_prog *prog, t_object *sp)
 	return (ambient);
 }
 
-double	get_scalar(t_coord *n, t_coord *rray, t_object *light)
+double	get_scalar(t_object *obj, t_coord *n, t_coord *rray, t_object *light)
 {
 	double		scalar;
 	t_coord		light_dir;
 	double		norm;
 	//double		light_current;
 
+	(void) obj;
 	light_dir.x = light->coord->x - rray->x;
 	light_dir.y = light->coord->y - rray->y;
 	light_dir.z = light->coord->z - rray->z;
@@ -40,6 +41,8 @@ double	get_scalar(t_coord *n, t_coord *rray, t_object *light)
 	light_dir.z /= norm;
 	//light_current = light->size[0] * 0.1;
 	scalar = op_dot_prod(*n, light_dir);
+	/*if (obj->id[1] == 'l')
+		scalar = fabs(scalar);*/
 	//scalar *= light_current;
 	if (scalar <= 0)
 		scalar = 0;

@@ -23,7 +23,7 @@ double	get_pixel_color(t_prog *prog, t_object *obj, \
 	diffuse_color = 0;
 	light = find_id(prog, "L");
 	ambient = get_ambient_intensity(prog, obj);
-	scalar = get_scalar(norm, rray, light);
+	scalar = get_scalar(obj, norm, rray, light);
 	if (in_shadow(prog, light, rray, norm) == 1)
 	{
 		ambient.red *= 255;
@@ -95,8 +95,8 @@ void	set_intensity(t_prog *prog, t_coord *rt, double *xy, char *buff)
 		{
 			n = orient2coord(prog->current_obj->orient);
 			norm = op_norm(n);
-			n.x /= norm;
-			n.y /= norm;
+			n.x /= norm * -1;
+			n.y /= norm * -1;
 			n.z /= norm;
 		}
 		intensity = get_pixel_color(prog, prog->current_obj, &n, rt);
@@ -112,9 +112,19 @@ void	set_intensity_caps(t_prog *prog, t_coord *rt, double *xy, char *buff)
 
 	n = orient2coord(prog->current_obj->orient);
 	norm = op_norm(n);
-	n.x /= norm;
-	n.y /= norm;
-	n.z /= norm;
+	if (prog->current_obj->id[0] == '1')
+	{
+		n.x /= norm;
+		n.y /= norm;
+		n.z /= norm;
+	}
+	else if (prog->current_obj->id[0] == '2')
+	{
+		n.x /= (norm * -1);
+		n.y /= (norm * -1);
+		n.z /= (norm * -1);
+	}
+	prog->current_obj->id[0] = 'c';
 	intensity = get_pixel_color(prog, prog->current_obj, &n, rt);
 	*(int *)(buff + (int) xy[1] * prog->line_bytes + (int) xy[0] * (prog->pixel_bits / 8)) = (int) intensity;
 }

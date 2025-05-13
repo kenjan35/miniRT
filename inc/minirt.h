@@ -16,6 +16,7 @@
 # define WIN_LENGTH 800
 # define WIN_WIDTH 800
 # define PI 3.1415
+# define EPSILON 1e-6
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
 # define CYAN "\033[1;96m"
@@ -60,10 +61,18 @@ typedef struct s_object
 	int			num;
 }	t_object;
 
+typedef struct s_camunit
+{
+	t_coord		c_forward;
+	t_coord		c_up;
+	t_coord		c_right;
+}	t_camunit;
+
 typedef struct	s_viewport
 {
 	double		length;
 	double		width;
+	t_camunit	cam;
 }	t_viewport;
 
 typedef struct s_prog
@@ -83,11 +92,6 @@ typedef struct s_prog
 	double		pixel;
 }	t_prog;
 
-typedef struct s_camunit
-{
-	t_coord		c_forward;
-	t_coord		c_up;
-}	t_camunit;
 
 typedef struct s_ray
 {
@@ -197,7 +201,7 @@ void		old_put_image(t_prog *prog);
 /************** Light *****************/
 
 t_color		get_ambient_intensity(t_prog *prog, t_object *sp);
-double		get_scalar(t_coord *n, t_coord *rray, t_object *light);
+double		get_scalar(t_object *obj, t_coord *n, t_coord *rray, t_object *light);
 double		get_diffuse_color(t_color *ambient, double *scalar, t_object *obj, t_object *light);
 t_coord		normalize_sphere(t_coord *ro, t_object *obj);
 t_coord		set_cylinder_normal(t_coord *rt, t_object *obj);
@@ -216,5 +220,6 @@ double		set_cy_time(t_ray *ray, t_prog *prog, t_object *obj);
 int			rotate(int key, t_prog *prog);
 int			translate(int key, t_prog *prog);
 int			get_object(int key, int x, int y, t_prog *prog);
+t_coord		op_normalize(t_coord c);
 
 #endif

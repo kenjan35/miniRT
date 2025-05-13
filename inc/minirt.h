@@ -109,13 +109,13 @@ typedef struct s_quadric
 
 
 /************ tools *************/
-
+t_object	*init_object(void);
 int			open_fd(char *file);
 char		**get_line(int fd);
 int			get_size(char *other, double max);
 double		arc_atof(const char *nptr);
 void		free_array(char **split);
-void		free_object(t_object *obj);
+void		free_object(void *obj);
 void		print_error(int cipher, void *ptr);
 t_object	*find_id(t_prog *prog, char *id);
 t_object	**create_object(t_prog *prog);

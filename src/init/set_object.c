@@ -30,12 +30,32 @@ int	get_shape_size(t_prog *prog, char *id_search)
 	return (len);
 }
 
+t_object	*doppel_object(t_object *src)
+{
+	t_object	*new;
+
+	if (!src)
+		return (NULL);
+	new = init_object();
+	if (!new)
+		return (NULL);
+	ft_memcpy(new->id, src->id, 3);
+	new->time = src->time;
+	new->num = src->num;
+	new->size[0] = src->size[0];
+	new->size[1] = src->size[1];
+	*(new->coord) = *(src->coord);
+	*(new->color) = *(src->color);
+	*(new->orient) = *(src->orient);
+	return (new);
+}
+
 t_list	*all_shape(t_prog *prog)
 {
 	t_list		*obj;
 	t_list		*tab;
-	t_list		*tmp;
 	t_object	*content;
+	t_object	*doppel;
 
 	if (!prog || prog->obj == NULL)
 		return (NULL);
@@ -46,10 +66,8 @@ t_list	*all_shape(t_prog *prog)
 		content = (t_object *) obj->content;
 		if (content->id[0] != 'A' && content->id[0] != 'L' && content->id[0] != 'C')
 		{
-			tmp = ft_lstnew(obj->content);
-			if (!tmp)
-				return (NULL);
-			ft_lstadd_back(&tab, tmp);
+			doppel = doppel_object(content);
+			ft_lstadd_back(&tab, ft_lstnew(doppel));
 		}
 		obj = obj->next;
 	}

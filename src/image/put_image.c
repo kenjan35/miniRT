@@ -104,26 +104,39 @@ void	set_intensity(t_prog *prog, t_coord *rt, double *xy, char *buff)
 	}
 }
 
+void	rectify_orient(t_coord *n)
+{
+	if (n->x && n->y == 0 && n->z == 0)
+	{
+		n->x = 0.9;
+		n->y = 0.2;
+	}
+	else if (n->x == 0 && n->y && n->z == 0)
+	{
+		n->y = 0.9;
+		n->z = 0.2;
+	}
+	if (n->x == 0 && n->y == 0 && n->z)
+	{
+		n->z = 0.9;
+		n->y = 0.2;
+	}
+}
+
 void	set_intensity_caps(t_prog *prog, t_coord *rt, double *xy, char *buff)
 {
 	t_coord	n;
-	double	norm;
 	double	intensity;
 
 	n = orient2coord(prog->current_obj->orient);
-	norm = op_norm(n);
-	if (prog->current_obj->id[0] == '1')
+	rectify_orient(&n);
+	if (prog->current_obj->id[0] == '2')
 	{
-		n.x /= norm;
-		n.y /= norm;
-		n.z /= norm;
+		n.x *= -1;
+		n.y *= -1;
+		n.z *= -1;
 	}
-	else if (prog->current_obj->id[0] == '2')
-	{
-		n.x /= (norm * -1);
-		n.y /= (norm * -1);
-		n.z /= (norm * -1);
-	}
+	n = op_normalize(n);
 	prog->current_obj->id[0] = 'c';
 	intensity = get_pixel_color(prog, prog->current_obj, &n, rt);
 	*(int *)(buff + (int) xy[1] * prog->line_bytes + (int) xy[0] * (prog->pixel_bits / 8)) = (int) intensity;
@@ -149,7 +162,7 @@ void	put_image(t_prog *prog, t_viewport *view, char *buff, double *time_caps)
 				time_caps[0] = get_time_caps(prog, &rt, &ray, &(obj->time));
 			if (time_caps[0] < INFINITY && time_caps[0] > 0)
 				set_intensity_caps(prog, &rt, &time_caps[1], buff);
-			if (obj->time > 0 && obj->time < INFINITY)
+			else if (obj->time > 0 && obj->time < INFINITY)
 				set_intensity(prog, &rt, &time_caps[1], buff);
 		}
 		time_caps[2] += prog->pixel;

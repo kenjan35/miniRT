@@ -219,6 +219,7 @@ double		set_cy_time(t_ray *ray, t_prog *prog, t_object *obj);
 
 int			rotate(int key, t_prog *prog);
 int			translate(int key, t_prog *prog);
+int			resize(int key, t_prog *prog);
 int			get_object(int key, int x, int y, t_prog *prog);
 t_coord		op_normalize(t_coord c);
 

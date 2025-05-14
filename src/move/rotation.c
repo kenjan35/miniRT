@@ -107,7 +107,7 @@ int	rotate(int key, t_prog *prog)
 	else if (key == 'q')
 		rotate_z(prog->to_move, -0.1);
 	else
-		prog->pixel = 1;
+		return (resize(key, prog));
 	mlx_destroy_image(prog->mlx, prog->img);
 	set_render(prog);
 	return (1);

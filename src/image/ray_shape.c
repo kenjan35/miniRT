@@ -73,7 +73,7 @@ t_object	*get_closest(t_prog *prog, t_viewport *view, double *xy)
 	tmp = prog->shapes;
 	while (tmp != NULL)
 	{
-		obj = (t_object *) (tmp->content);
+		obj = (t_object *)(tmp->content);
 		obj->time = set_shape_time(&(prog->px_pos), prog, obj);
 		if (obj->time < INFINITY && obj->time > 0)
 		{

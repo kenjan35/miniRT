@@ -56,7 +56,7 @@ double	get_nearest_time(t_prog *prog, t_ray *ray, t_list *s, \
 		tmp = s;
 		while (tmp)
 		{
-			obj = (t_object *) (tmp->content);
+			obj = (t_object *)(tmp->content);
 			time = (*inter)(prog, ray);
 			if (time < min)
 				min = time;
@@ -166,9 +166,6 @@ void	set_render(t_prog *prog)
 	prog->img = mlx_new_image(prog->mlx, WIN_LENGTH, WIN_WIDTH);
 	buff = mlx_get_data_addr(prog->img, &(prog->pixel_bits), \
 		&(prog->line_bytes), &(prog->endian));
-	prog->shapes = all_shape(prog);
-	if (prog->shapes == NULL)
-		return ;
 	time_caps[0] = INFINITY;
 	time_caps[2] = 0;
 	put_image(prog, &(prog->view), buff, &time_caps[0]);

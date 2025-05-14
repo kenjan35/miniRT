@@ -56,14 +56,14 @@ void	check_list(t_prog *prog)
 	t_list		*tmp_obj;
 
 	tmp = prog;
-	tmp_obj = tmp->obj;
-	while (tmp->obj)
+	tmp_obj = tmp->shapes;
+	while (tmp->shapes)
 	{
-		object = tmp->obj->content;
+		object = tmp->shapes->content;
 		printf("Id : %s , num : %d\n", object->id, object->num);
-		tmp->obj = tmp->obj->next;
+		tmp->shapes = tmp->shapes->next;
 	}
-	tmp->obj = tmp_obj;
+	tmp->shapes = tmp_obj;
 }
 
 int	gradient(int y, t_color *colors)
@@ -128,6 +128,9 @@ int	main(int ac, char *av[])
 		ft_putstr_fd(RED "Error :\nWrong number of element\n" RESET, 2);
 		exit(1);
 	}
+	prog.shapes = all_shape(&prog);
+	if (prog.shapes == NULL)
+		return (1);
 	set_render(&prog);
 	check_list(&prog);
 	mlx_mouse_hook(prog.mlx_win, get_object, &prog);

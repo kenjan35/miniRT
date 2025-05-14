@@ -28,6 +28,34 @@ t_object	*get_object_with_num(t_prog *prog, int num)
 	return (NULL);
 }
 
+void	resize_diameter(t_object *obj, double size)
+{
+	obj->size[0] += size;
+}
+
+void	resize_height(t_object *obj, double size)
+{
+	obj->size[1] += size;
+}
+
+int	resize(int key, t_prog *prog)
+{
+	prog->pixel = 2.5;
+	if (key == 'r')
+		resize_diameter(prog->to_move, 0.25);
+	else if (key == 'f' && prog->to_move->size[0] > 0.25)
+		resize_diameter(prog->to_move, -0.25);
+	else if (key == 'y')
+		resize_height(prog->to_move, 0.25);
+	else if (key == 'h' && prog->to_move->size[1] > 0.25)
+		resize_height(prog->to_move, -0.25);
+	else
+		prog->pixel = 1;
+	mlx_destroy_image(prog->mlx, prog->img);
+	set_render(prog);
+	return (1);
+}
+
 int	get_object(int key, int x, int y, t_prog *prog)
 {
 	t_object	*obj;

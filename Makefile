@@ -16,7 +16,7 @@ SRC_MOVE = $(addprefix src/move/, rotation.c translation.c set_move.c)
 
 SRC_LIGHT = $(addprefix src/light/, sphere.c cylinder.c hard_shadow.c)
 
-SRC_IMAGE = $(addprefix src/image/, put_image.c ray_shape.c)
+SRC_IMAGE = $(addprefix src/image/, put_image.c ray_shape.c image_utils.c)
 
 SRC_UTILS = $(addprefix src/utils/, open_file.c archer_atof.c free_array.c print_error.c math_utils.c math_operation.c quadrique_operation.c build_objects.c)
 

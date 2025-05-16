@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/01 11:54:05 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:08:44 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,10 @@ void		init_nbr_element(int nbr[]);
 int			check_element(t_list **list);
 void		set_nbr_element(int nbr[], t_object *obj);
 int			init_prog(t_prog *prog);
+void		set_intensity(t_prog *prog, t_coord *rt, double *xy, char *buff);
+void		set_intensity_caps(t_prog *prog, t_coord *rt, double *xy, char *buff);
+double		get_pixel_color(t_prog *prog, t_object *obj, \
+	t_coord *norm, t_coord *rray);
 
 /************ color *************/
 

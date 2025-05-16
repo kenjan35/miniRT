@@ -6,11 +6,24 @@
 /*   By: atolojan <atolojan@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 10:01:11 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/01 11:54:06 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/14 14:59:51 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
+
+void	set_ambient(t_color *ambient)
+{
+	ambient->red *= 255;
+	ambient->green *= 255;
+	ambient->blue *= 255;
+	if (ambient->red > 255)
+		ambient->red = 255;
+	if (ambient->green > 255)
+		ambient->green = 255;
+	if (ambient->blue > 255)
+		ambient->blue = 255;
+}
 
 double	get_pixel_color(t_prog *prog, t_object *obj, \
 	t_coord *norm, t_coord *rray)
@@ -26,16 +39,9 @@ double	get_pixel_color(t_prog *prog, t_object *obj, \
 	scalar = get_scalar(obj, norm, rray, light);
 	if (in_shadow(prog, light, rray, norm) == 1)
 	{
-		ambient.red *= 255;
-		ambient.green *= 255;
-		ambient.blue *= 255;
-		if (ambient.red > 255)
-			ambient.red = 255;
-		if (ambient.green > 255)
-			ambient.green = 255;
-		if (ambient.blue > 255)
-			ambient.blue = 255;
-		diffuse_color = ((int)ambient.red << 16) | ((int)ambient.green << 8) | ((int)ambient.blue);
+		set_ambient(&ambient);
+		diffuse_color = ((int)ambient.red << 16) | ((int)ambient.green << 8) | \
+			((int)ambient.blue);
 	}
 	else
 		diffuse_color = get_diffuse_color(&ambient, &scalar, obj, light);
@@ -64,82 +70,6 @@ double	get_nearest_time(t_prog *prog, t_ray *ray, t_list *s, \
 		}
 	}
 	return (min);
-}
-
-double	get_time_caps(t_prog *prog, t_coord *rt, t_ray *ray, double *time)
-{
-	double	time_caps;
-
-	(void) rt;
-	(void) time;
-	time_caps = INFINITY;
-	time_caps = inter_cy_caps(prog->current_obj, ray);
-	if (get_extremity(&(ray->ro), rt, prog->current_obj) == 0)
-		*time = 0;
-	return (time_caps);
-}
-
-void	set_intensity(t_prog *prog, t_coord *rt, double *xy, char *buff)
-{
-	t_coord	n;
-	double	norm;
-	double	intensity;
-
-	if (prog->current_obj)
-	{
-		if (prog->current_obj->id[1] == 'y')
-			n = set_cylinder_normal(rt, prog->current_obj);
-		else if (prog->current_obj->id[1] == 'p')
-			n = normalize_sphere(rt, prog->current_obj);
-		else if (prog->current_obj->id[1] == 'l')
-		{
-			n = orient2coord(prog->current_obj->orient);
-			norm = op_norm(n);
-			n.x /= norm * -1;
-			n.y /= norm * -1;
-			n.z /= norm;
-		}
-		intensity = get_pixel_color(prog, prog->current_obj, &n, rt);
-		*(int *)(buff + (int) xy[1] * prog->line_bytes + (int) xy[0] * (prog->pixel_bits / 8)) = (int) intensity;
-	}
-}
-
-void	rectify_orient(t_coord *n)
-{
-	if (n->x && n->y == 0 && n->z == 0)
-	{
-		n->x = 0.9;
-		n->y = 0.2;
-	}
-	else if (n->x == 0 && n->y && n->z == 0)
-	{
-		n->y = 0.9;
-		n->z = 0.2;
-	}
-	if (n->x == 0 && n->y == 0 && n->z)
-	{
-		n->z = 0.9;
-		n->y = 0.2;
-	}
-}
-
-void	set_intensity_caps(t_prog *prog, t_coord *rt, double *xy, char *buff)
-{
-	t_coord	n;
-	double	intensity;
-
-	n = orient2coord(prog->current_obj->orient);
-	rectify_orient(&n);
-	if (prog->current_obj->id[0] == '2')
-	{
-		n.x *= -1;
-		n.y *= -1;
-		n.z *= -1;
-	}
-	n = op_normalize(n);
-	prog->current_obj->id[0] = 'c';
-	intensity = get_pixel_color(prog, prog->current_obj, &n, rt);
-	*(int *)(buff + (int) xy[1] * prog->line_bytes + (int) xy[0] * (prog->pixel_bits / 8)) = (int) intensity;
 }
 
 void	put_image(t_prog *prog, t_viewport *view, char *buff, double *time_caps)

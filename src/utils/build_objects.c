@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 14:23:17 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/21 16:14:06 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:44:12 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ t_object	**create_object(t_prog *prog)
 	while (prog->obj)
 	{
 		object = prog->obj->content;
-		if (!ft_strncmp(object->id, "sp", 2) || !ft_strncmp(object->id, "pl", 2) || !ft_strncmp(object->id, "cy", 2))
+		if (!ft_strncmp(object->id, "sp", 2) || !ft_strncmp(object->id, "pl", 2)
+			|| !ft_strncmp(object->id, "cy", 2))
 		{
 			all_object[i] = object;
 			printf("build object : Id = %s\n", all_object[i]->id);

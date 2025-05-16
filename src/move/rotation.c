@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 15:44:39 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/01 11:08:15 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:47:49 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,60 +35,6 @@ void	set_roll(t_viewport *view, double angle)
 	new_right = roll(view->cam.c_right, view->cam.c_forward, angle);
 	view->cam.c_up = new_up;
 	view->cam.c_right = new_right;
-}
-
-void	rotate_x(t_object *obj, double angle)
-{
-	double	y;
-	double	z;
-	t_coord	to_coord;
-	double	norm;
-
-	y = obj->orient->or_y * cos(angle) - obj->orient->or_z * sin(angle);
-	z = obj->orient->or_y * sin(angle) + obj->orient->or_z * cos(angle);
-	obj->orient->or_y = y;
-	obj->orient->or_z = z;
-	to_coord = orient2coord(obj->orient);
-	norm = op_norm(to_coord);
-	obj->orient->or_x /= norm;
-	obj->orient->or_y /= norm;
-	obj->orient->or_z /= norm;
-}
-
-void	rotate_y(t_object *obj, double angle)
-{
-	double	x;
-	double	z;
-	t_coord	to_coord;
-	double	norm;
-
-	x = obj->orient->or_x * cos(angle) + obj->orient->or_z * sin(angle);
-	z = -(obj->orient->or_x * sin(angle)) + obj->orient->or_z * cos(angle);
-	obj->orient->or_x = x;
-	obj->orient->or_z = z;
-	to_coord = orient2coord(obj->orient);
-	norm = op_norm(to_coord);
-	obj->orient->or_x /= norm;
-	obj->orient->or_y /= norm;
-	obj->orient->or_z /= norm;
-}
-
-void	rotate_z(t_object *obj, double angle)
-{
-	double	x;
-	double	y;
-	t_coord	to_coord;
-	double	norm;
-
-	x = obj->orient->or_x * cos(angle) - obj->orient->or_y * sin(angle);
-	y = obj->orient->or_x * sin(angle) + obj->orient->or_y * cos(angle);
-	obj->orient->or_x = x;
-	obj->orient->or_y = y;
-	to_coord = orient2coord(obj->orient);
-	norm = op_norm(to_coord);
-	obj->orient->or_x /= norm;
-	obj->orient->or_y /= norm;
-	obj->orient->or_z /= norm;
 }
 
 int	rotate(int key, t_prog *prog)

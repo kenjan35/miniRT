@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 14:58:32 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/24 13:11:36 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:30:52 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,6 @@ t_viewport	mr_camera_init(double n, t_prog *prog)
 	view.length = ratio_px * view.width;
 	prog->obj = p_tmp;
 	return (view);
-}
-
-t_coord	orient2coord(t_orient *orient)
-{
-	t_coord	result;
-
-	result.x = orient->or_x;
-	result.y = orient->or_y;
-	result.z = orient->or_z;
-	return (result);
 }
 
 t_coord	take_coord_id(t_prog *prog, char *str)
@@ -77,29 +67,6 @@ t_coord	op_normalize(t_coord c)
 	result.z = c.z / norm;
 	return (result);
 }
-/*
-t_coord	set_cam_up(t_coord c_forward)
-{
-	t_coord	world_up;
-	t_coord	right;
-	t_coord	result;
-	double	norm;
-
-	world_up = (t_coord){0, 0, 1};
-	if (fabs(c_forward.y) < pow(10, -6) && fabs(c_forward.x) < pow(10, -6))
-		world_up = (t_coord){1, 0, 0};
-	right = op_cross_prod(world_up, c_forward);
-	norm = op_norm(right);
-	right.x /= norm;
-	right.y /= norm;
-	right.z /= norm;
-	result = op_cross_prod(c_forward, right);
-	norm = op_norm(result);
-	result.x /= norm;
-	result.y /= norm;
-	result.z /= norm;
-	return (result);
-}*/
 
 t_coord	set_cam_up(t_coord c_forward)
 {

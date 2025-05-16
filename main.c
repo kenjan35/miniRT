@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/01 11:19:06 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:37:17 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,6 @@ int	main(int ac, char *av[])
 	if (prog.shapes == NULL)
 		return (1);
 	set_render(&prog);
-	check_list(&prog);
 	mlx_mouse_hook(prog.mlx_win, get_object, &prog);
 	mlx_key_hook(prog.mlx_win, translate, &prog);
 	mlx_hook(prog.mlx_win, 17, 1L << 0, quit_window, &prog);

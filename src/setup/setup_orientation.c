@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:24:01 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/21 11:20:20 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:30:33 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,14 @@ int	get_orient(char *orient, t_object *obj)
 		err = -1;
 	free_array(str);
 	return (err);
+}
+
+t_coord	orient2coord(t_orient *orient)
+{
+	t_coord	result;
+
+	result.x = orient->or_x;
+	result.y = orient->or_y;
+	result.z = orient->or_z;
+	return (result);
 }

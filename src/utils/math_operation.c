@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:39:36 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/19 16:32:03 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/16 14:45:41 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_coord	op_ortgl_projec_prll(t_coord u, t_coord v)
 	t_coord	result;
 	double	lamda;
 
-	lamda = op_dot_prod(u, v) / op_dot_prod(u,u);
+	lamda = op_dot_prod(u, v) / op_dot_prod(u, u);
 	result = op_vect_n_lamda(lamda, u);
-	return (result); 
+	return (result);
 }

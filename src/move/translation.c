@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   translation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:02:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/01 11:21:41 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:03:47 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,19 +36,28 @@ void	translate_z(t_object *obj, double distance)
 	obj->coord->z = z;
 }
 
-int	translate(int key, t_prog *prog)
+t_object	*obj_to_translate(int key, t_prog *prog)
 {
 	static t_object	*obj = NULL;
 
-	prog->pixel = 2.5;
 	if (key == 'c')
 		prog->to_move = find_id(prog, "C");
 	if (key == 'x')
 		prog->to_move = find_id(prog, "L");
 	if (prog->to_move)
 		obj = prog->to_move;
-	else
+	return (obj);
+}
+
+int	translate(int key, t_prog *prog)
+{
+	static t_object	*obj = NULL;
+
+	prog->pixel = 2.5;
+	if (!obj_to_translate(key, prog))
 		return (0);
+	else
+		obj = obj_to_translate(key, prog);
 	if (key == 'u')
 		translate_x(obj, 0.25);
 	else if (key == 'o')

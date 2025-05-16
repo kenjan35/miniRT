@@ -12,7 +12,7 @@ SRC_CHECKER = $(addprefix src/checker/, check_object.c check_object_utils.c chec
 
 SRC_INIT = $(addprefix src/init/, set_object.c init_prog.c)
 
-SRC_MOVE = $(addprefix src/move/, rotation.c translation.c set_move.c)
+SRC_MOVE = $(addprefix src/move/, rotation.c translation.c set_move.c rotation_utils.c)
 
 SRC_LIGHT = $(addprefix src/light/, sphere.c cylinder.c hard_shadow.c)
 

@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/14 15:08:44 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/16 15:06:42 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,5 +226,8 @@ int			translate(int key, t_prog *prog);
 int			resize(int key, t_prog *prog);
 int			get_object(int key, int x, int y, t_prog *prog);
 t_coord		op_normalize(t_coord c);
+void		rotate_x(t_object *obj, double angle);
+void		rotate_y(t_object *obj, double angle);
+void		rotate_z(t_object *obj, double angle);
 
 #endif

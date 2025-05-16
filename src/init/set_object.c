@@ -64,7 +64,8 @@ t_list	*all_shape(t_prog *prog)
 	while (obj)
 	{
 		content = (t_object *) obj->content;
-		if (content->id[0] != 'A' && content->id[0] != 'L' && content->id[0] != 'C')
+		if (content->id[0] != 'A' && content->id[0] != 'L' && \
+			content->id[0] != 'C')
 		{
 			doppel = doppel_object(content);
 			ft_lstadd_back(&tab, ft_lstnew(doppel));

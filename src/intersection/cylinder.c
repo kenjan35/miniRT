@@ -56,7 +56,8 @@ int	get_extremity(t_coord *px, t_coord *rt, t_object *cy)
 	return (0);
 }
 
-t_quadric	op_values_polynome_cy(t_coord *px, t_coord *axis_cy, t_coord *dir, t_object *cy)
+t_quadric	op_values_polynome_cy(t_coord *px, t_coord *axis_cy, \
+	t_coord *dir, t_object *cy)
 {
 	t_quadric	result;
 	t_coord		c;
@@ -69,7 +70,8 @@ t_quadric	op_values_polynome_cy(t_coord *px, t_coord *axis_cy, t_coord *dir, t_o
 	c = get_extremity_upper(cy);
 	x = op_vector_substraction(*px, c);
 	tmp = op_dot_prod(*dir, *dir);
-	result.A = tmp - (op_dot_prod(*dir, *axis_cy) * op_dot_prod(*dir, *axis_cy));
+	result.A = tmp - (op_dot_prod(*dir, *axis_cy) * \
+		op_dot_prod(*dir, *axis_cy));
 	tmp = op_dot_prod(*dir, *axis_cy) * op_dot_prod(x, *axis_cy);
 	result.B = 2 * (op_dot_prod(*dir, x) - tmp);
 	tmp = op_dot_prod(x, *axis_cy) * op_dot_prod(x, *axis_cy);
@@ -139,12 +141,14 @@ double	inter_cy_caps(t_object *cy, t_ray *ray)
 	t2 = inter_caps_low(&c_caps, cy, ray);
 	ray_caps = ray_launch(ray->ro, ray->v, t2);
 	tmp[1] = op_vector_substraction(ray_caps, c_caps);
-	if (op_norm(tmp[0]) <= (cy->size[0] / 2) + EPSILON && t < t2 && t > pow(10, -6))
+	if (op_norm(tmp[0]) <= (cy->size[0] / 2) + EPSILON && \
+		t < t2 && t > pow(10, -6))
 	{
 		cy->id[0] = '1';
 		return (t);
 	}
-	else if (op_norm(tmp[1]) <= (cy->size[0] / 2) + EPSILON && t2 < t && t2 > pow(10, -6))
+	else if (op_norm(tmp[1]) <= (cy->size[0] / 2) + EPSILON && \
+		t2 < t && t2 > pow(10, -6))
 	{
 		cy->id[0] = '2';
 		return (t2);

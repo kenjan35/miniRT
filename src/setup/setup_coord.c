@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:26:17 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/21 15:21:50 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/17 22:42:12 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	get_coord(char *coord, t_object *obj)
 	int		err;
 
 	str = ft_split(coord, ',');
-	if (!str)
+	if (!str || check_comma(str, coord) == 0)
 		return (-1);
 	i = 0;
 	err = 0;
 	while (str[i] != NULL)
 	{
-		if (arc_atof((char *) str[i]) < -100 || \
-			arc_atof((char *) str[i]) > 100)
+		if (arc_atof((char *) str[i]) < -1000000000 || \
+			arc_atof((char *) str[i]) > 1000000000)
 		{
 			err = -1;
 			break ;

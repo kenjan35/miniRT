@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:12:55 by atolojan          #+#    #+#             */
-/*   Updated: 2025/01/21 15:21:27 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/17 22:42:36 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	get_color(char *color, t_object *obj)
 	int		err;
 
 	str = ft_split(color, ',');
-	if (!str)
+	if (!str || check_comma(str, color) == 0)
 		return (-1);
 	i = 0;
 	err = 0;

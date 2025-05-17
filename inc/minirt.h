@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/17 20:53:19 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/17 22:41:37 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void		print_error(int cipher, void *ptr);
 t_object	*find_id(t_prog *prog, char *id);
 t_object	**create_object(t_prog *prog);
 t_coord		take_coord_id(t_prog *prog, char *str);
+int			check_comma(char **str, char *orient);
 
 /************ config *************/
 

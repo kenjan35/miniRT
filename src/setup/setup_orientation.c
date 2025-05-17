@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:24:01 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/16 14:30:33 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/17 22:41:05 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,31 @@ void	set_orient(t_object *obj, char **str)
 	obj->orient->or_z /= norm;
 }
 
+int	check_comma(char **str, char *orient)
+{
+	int	i;
+
+	i = 0;
+	while (orient[i] != '\0')
+	{
+		if (orient[i] == ',')
+		{
+			if (orient[i + 1] && orient[i + 1] == ',')
+			{
+				free_array(str);
+				return (0);
+			}
+			else if (!orient[i + 1])
+			{
+				free_array(str);
+				return (0);
+			}
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	get_orient(char *orient, t_object *obj)
 {
 	char	**str;
@@ -34,7 +59,7 @@ int	get_orient(char *orient, t_object *obj)
 	int		err;
 
 	str = ft_split(orient, ',');
-	if (!str)
+	if (!str || check_comma(str, orient) == 0)
 		return (-1);
 	i = 0;
 	err = 0;

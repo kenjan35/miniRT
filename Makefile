@@ -1,4 +1,4 @@
-CFLAGS = -g -Wall -Wextra -Werror -O3
+CFLAGS = -Wall -Wextra -Werror
 
 CC = cc $(CFLAGS)
 
@@ -67,7 +67,7 @@ $(OBJ_DIR)%.o : %.c
 	$(CC) -o $@ -c $< ${<.c=.o}
 
 clean:
-	@rm -rf $(OBJS)
+	@rm -rf $(OBJ_DIR)
 	@make --no-print-directory clean -C inc/libft/
 	@clear
 	@echo "\033[0;93mAll objects was suppressed\033[0m"

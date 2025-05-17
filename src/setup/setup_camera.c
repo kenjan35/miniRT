@@ -23,7 +23,7 @@ t_viewport	mr_camera_init(double n, t_prog *prog)
 	p_tmp = prog->obj;
 	tmp = find_id(prog, "C");
 	if ((double)tmp->size[0] == 180)
-		angle = (179 * PI) / 180.00;
+		angle = (179 * PI * 0.5) / 180.00;
 	else
 		angle = ((double)tmp->size[0] * 0.5 * PI) / 180.00;
 	ratio_px = WIN_LENGTH / WIN_WIDTH;

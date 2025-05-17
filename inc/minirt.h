@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/16 15:06:42 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/17 19:30:36 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,7 @@ t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, double *
 t_ray		op_quadrique_value_sp(t_coord px,t_prog *prog, t_object *sp);
 t_ray		op_quadrique_value_cy(t_coord px, t_prog *prog, t_object *cy);
 t_quadric	op_values_polynome(t_ray ray, double rayon);
+t_coord		get_extremity_upper(t_object *obj);
 int			get_extremity(t_coord *px, t_coord *rt, t_object *cy);
 double		inter_cy_caps(t_object *cy, t_ray *ray);
 

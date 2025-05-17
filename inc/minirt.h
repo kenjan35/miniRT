@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/17 19:30:36 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/17 20:53:19 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,8 @@ int			check_light(char **split, t_object *obj);
 int			check_sphere(char **split, t_object *obj);
 int			check_plane(char **split, t_object *obj);
 int			check_cylinder(char **split, t_object *obj);
+t_prog		checker(char **av);
+void		check_file(char *av);
 
 /************ window *************/
 

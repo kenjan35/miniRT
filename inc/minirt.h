@@ -118,6 +118,7 @@ t_object	*find_id(t_prog *prog, char *id);
 t_object	**create_object(t_prog *prog);
 t_coord		take_coord_id(t_prog *prog, char *str);
 int			check_comma(char **str, char *orient);
+void		set_ambient(t_color *ambient);
 
 t_viewport	mr_camera_init(double n, t_prog *prog);
 t_coord		mr_pixel_position(t_prog *prog, t_viewport view, double *xy);

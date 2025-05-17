@@ -12,17 +12,17 @@
 
 #include "../../inc/minirt.h"
 
-void	set_ambient(t_color *ambient)
+double	set_cam_dir(t_coord *rray, t_coord *norm, t_prog *prog)
 {
-	ambient->red *= 255;
-	ambient->green *= 255;
-	ambient->blue *= 255;
-	if (ambient->red > 255)
-		ambient->red = 255;
-	if (ambient->green > 255)
-		ambient->green = 255;
-	if (ambient->blue > 255)
-		ambient->blue = 255;
+	t_object	*camera;
+	double		dot2;
+	t_coord		cam_dir;
+
+	camera = find_id(prog, "C");
+	cam_dir = op_vector_substraction(*(camera->coord), *rray);
+	cam_dir = op_normalize(cam_dir);
+	dot2 = op_dot_prod(*norm, cam_dir);
+	return (dot2);
 }
 
 double	get_pixel_color(t_prog *prog, t_object *obj, \
@@ -32,12 +32,19 @@ double	get_pixel_color(t_prog *prog, t_object *obj, \
 	t_object	*light;
 	double		scalar;
 	double		diffuse_color;
+	double		dot[2];
 
 	diffuse_color = 0;
 	light = find_id(prog, "L");
 	ambient = get_ambient_intensity(prog, obj);
+	dot[0] = op_dot_prod(*norm, \
+		op_normalize(op_vector_substraction(*(light->coord), *rray)));
+	dot[1] = set_cam_dir(rray, norm, prog);
+	if ((obj->id[1] == 'l' && (dot[0] < 0)))
+		*norm = op_vect_n_lamda(-1, *norm);
 	scalar = get_scalar(obj, norm, rray, light);
-	if (in_shadow(prog, light, rray, norm) == 1)
+	if (((obj->id[1] == 'l' && (dot[0] * dot[1] < 0))) || \
+		in_shadow(prog, light, rray, norm) == 1)
 	{
 		set_ambient(&ambient);
 		diffuse_color = ((int)ambient.red << 16) | ((int)ambient.green << 8) | \

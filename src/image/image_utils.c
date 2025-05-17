@@ -12,6 +12,19 @@
 
 #include "../../inc/minirt.h"
 
+void	set_ambient(t_color *ambient)
+{
+	ambient->red *= 255;
+	ambient->green *= 255;
+	ambient->blue *= 255;
+	if (ambient->red > 255)
+		ambient->red = 255;
+	if (ambient->green > 255)
+		ambient->green = 255;
+	if (ambient->blue > 255)
+		ambient->blue = 255;
+}
+
 double	get_time_caps(t_prog *prog, t_coord *rt, t_ray *ray, double *time)
 {
 	double	time_caps;

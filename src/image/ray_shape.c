@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_shape.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 09:19:14 by atolojan          #+#    #+#             */
-/*   Updated: 2025/04/18 10:42:27 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/18 02:40:39 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,17 @@ double	set_shape_time(t_coord *px_position, t_prog *prog, t_object *obj)
 	time = INFINITY;
 	if (obj->id[1] == 'l')
 	{
-		ray = op_quadrique_value_pl(*px_position, prog);
+		ray = op_quadric_value_pl(*px_position, prog);
 		time = time_inter_pl(&ray, obj);
 	}
 	else if (obj->id[1] == 'y')
 	{
-		ray = op_quadrique_value_cy(*px_position, prog, obj);
+		ray = op_quadric_value_cy(*px_position, prog, obj);
 		time = set_cy_time(&ray, prog, obj);
 	}
 	else if (obj->id[1] == 'p')
 	{
-		ray = op_quadrique_value_sp(*px_position, prog, obj);
+		ray = op_quadric_value_sp(*px_position, prog, obj);
 		time = inter_sp(&ray, obj);
 	}
 	return (time);

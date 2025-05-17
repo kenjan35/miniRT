@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/17 23:09:56 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/18 02:40:39 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,14 +173,14 @@ t_coord		ray_launch(t_coord u, t_coord v, double t);
 t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
 t_coord		op_position_px(t_coord pos_cam, t_viewport view, \
 	t_camunit cam, double *xy);
-t_ray		op_quadrique_value_sp(t_coord px, t_prog *prog, t_object *sp);
-t_ray		op_quadrique_value_cy(t_coord px, t_prog *prog, t_object *cy);
+t_ray		op_quadric_value_sp(t_coord px, t_prog *prog, t_object *sp);
+t_ray		op_quadric_value_cy(t_coord px, t_prog *prog, t_object *cy);
 t_quadric	op_values_polynome(t_ray ray, double rayon);
 t_coord		get_extremity_upper(t_object *obj);
 int			get_extremity(t_coord *px, t_coord *rt, t_object *cy);
 double		inter_cy_caps(t_object *cy, t_ray *ray);
 
-t_ray		op_quadrique_value_pl(t_coord px, t_prog *prog);
+t_ray		op_quadric_value_pl(t_coord px, t_prog *prog);
 t_orient	take_orient_id(t_prog *prog, char *str);
 double		vector_numer(t_coord n, t_coord rp, t_coord px);
 double		vector_denom(t_coord n, t_coord v);

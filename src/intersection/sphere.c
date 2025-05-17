@@ -6,13 +6,13 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 14:54:57 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/24 14:52:46 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/18 02:40:39 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-t_ray	op_quadrique_value_sp(t_coord px, t_prog *prog, t_object *sp)
+t_ray	op_quadric_value_sp(t_coord px, t_prog *prog, t_object *sp)
 {
 	t_ray		result;
 	t_coord		v;

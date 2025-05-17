@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 09:05:36 by atolojan          #+#    #+#             */
-/*   Updated: 2025/04/29 16:05:46 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/17 09:25:04 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ double	get_scalar(t_object *obj, t_coord *n, t_coord *rray, t_object *light)
 	double		scalar;
 	t_coord		light_dir;
 	double		norm;
-	//double		light_current;
 
 	(void) obj;
 	light_dir.x = light->coord->x - rray->x;
@@ -39,11 +38,7 @@ double	get_scalar(t_object *obj, t_coord *n, t_coord *rray, t_object *light)
 	light_dir.x /= norm;
 	light_dir.y /= norm;
 	light_dir.z /= norm;
-	//light_current = light->size[0] * 0.1;
 	scalar = op_dot_prod(*n, light_dir);
-	/*if (obj->id[1] == 'l')
-		scalar = fabs(scalar);*/
-	//scalar *= light_current;
 	if (scalar <= 0)
 		scalar = 0;
 	return (scalar);
@@ -64,7 +59,8 @@ t_coord	normalize_sphere(t_coord *ro, t_object *sp)
 	return (n);
 }
 
-double	get_diffuse_color(t_color *ambient, double *scalar, t_object *obj, t_object *light)
+double	get_diffuse_color(t_color *ambient, double *scalar, t_object *obj,
+	t_object *light)
 {
 	t_color		diffuse;
 	double		diff;
@@ -87,6 +83,7 @@ double	get_diffuse_color(t_color *ambient, double *scalar, t_object *obj, t_obje
 		diffuse.green = 255;
 	if (diffuse.blue > 255)
 		diffuse.blue = 255;
-	diff = ((int)diffuse.red << 16) | ((int)diffuse.green << 8) | ((int)diffuse.blue);
+	diff = ((int)diffuse.red << 16) | ((int)diffuse.green << 8)
+		| ((int)diffuse.blue);
 	return (diff);
 }

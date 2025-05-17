@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 09:00:07 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/16 14:37:17 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/17 20:56:49 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,47 +66,6 @@ void	check_list(t_prog *prog)
 	tmp->shapes = tmp_obj;
 }
 
-int	gradient(int y, t_color *colors)
-{
-	int	color;
-	int	r;
-	int	g;
-	int	b;
-	r = ((int)(colors->red) - (y * 255) / WIN_WIDTH) % 255;
-	g = ((int)(colors->green) - (y * 255) / WIN_WIDTH) % 255;
-	b = ((int)(colors->blue) - (y * 255) / WIN_WIDTH) % 255;
-	color = (r << 16) | (g << 8) | b;
-	return (color);
-}
-
-void	draw_gradient(t_prog *prog)
-{
-	int		*data;
-	int		color;
-	int		x;
-	int		y;
-	t_color	c;
-	void	*img;
-
-	y = 0;
-	c = (t_color){255, 255, 255};
-	img = mlx_new_image(prog->mlx, WIN_LENGTH, WIN_WIDTH);
-	data = (int *)mlx_get_data_addr(img, &(int){0}, &(int){0}, &(int){0});
-	while (y < WIN_WIDTH)
-	{
-		color = gradient(y, &c);
-		x = 0;
-		while (x < WIN_LENGTH)
-		{
-			data[y * WIN_LENGTH + x] = color;
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(prog->mlx, prog->mlx_win, img, 0, 0);
-	mlx_destroy_image(prog->mlx, img);
-}
-
 int	main(int ac, char *av[])
 {
 	t_prog	prog;
@@ -116,18 +75,7 @@ int	main(int ac, char *av[])
 		print_error(3, NULL);
 		exit(1);
 	}
-	check_file(av[1]);
-	if (init_prog(&prog) == 0)
-	{
-		ft_putstr_fd(RED "Error :\nRendering problem\n" RESET, 2);
-		exit(1);
-	}
-	set_data(av[1], &(prog.obj), &prog);
-	if (check_element(&(prog.obj)) == 0)
-	{
-		ft_putstr_fd(RED "Error :\nWrong number of element\n" RESET, 2);
-		exit(1);
-	}
+	prog = checker(av);
 	prog.shapes = all_shape(&prog);
 	if (prog.shapes == NULL)
 		return (1);

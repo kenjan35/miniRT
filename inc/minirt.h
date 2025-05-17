@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 10:40:52 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/17 22:41:37 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/17 23:09:56 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ typedef struct s_quadric
 	double	c;
 }	t_quadric;
 
-/************ tools *************/
 t_object	*init_object(void);
 int			open_fd(char *file);
 char		**get_line(int fd);
@@ -120,12 +119,8 @@ t_object	**create_object(t_prog *prog);
 t_coord		take_coord_id(t_prog *prog, char *str);
 int			check_comma(char **str, char *orient);
 
-/************ config *************/
-
 t_viewport	mr_camera_init(double n, t_prog *prog);
 t_coord		mr_pixel_position(t_prog *prog, t_viewport view, double *xy);
-
-/************ data *************/
 
 void		set_data(char *file, t_list **list, t_prog *prog);
 void		init_nbr_element(int nbr[]);
@@ -138,22 +133,14 @@ void		set_intensity_caps(t_prog *prog, t_coord *rt, \
 double		get_pixel_color(t_prog *prog, t_object *obj, \
 	t_coord *norm, t_coord *rray);
 
-/************ color *************/
-
 void		set_color(t_object *obj, char **str);
 int			get_color(char *color, t_object *obj);
-
-/************ orient *************/
 
 void		set_orient(t_object *obj, char **str);
 int			get_orient(char *orient, t_object *obj);
 
-/************ coord *************/
-
 void		set_coord(t_object *obj, char **str);
 int			get_coord(char *coord, t_object *obj);
-
-/************ check_obj *************/
 
 int			check_ambient(char **split, t_object *obj);
 int			check_camera(char **split, t_object *obj);
@@ -164,12 +151,8 @@ int			check_cylinder(char **split, t_object *obj);
 t_prog		checker(char **av);
 void		check_file(char *av);
 
-/************ window *************/
-
 int			quit_window(t_prog *obj);
 int			key_close(int key, t_prog *prog);
-
-/************ Operation ************/
 
 double		op_norm(t_coord u);
 double		inter_sp(t_ray *ray, t_object *sp);
@@ -196,8 +179,6 @@ t_coord		get_extremity_upper(t_object *obj);
 int			get_extremity(t_coord *px, t_coord *rt, t_object *cy);
 double		inter_cy_caps(t_object *cy, t_ray *ray);
 
-/************** Operation Plane *****************/
-
 t_ray		op_quadrique_value_pl(t_coord px, t_prog *prog);
 t_orient	take_orient_id(t_prog *prog, char *str);
 double		vector_numer(t_coord n, t_coord rp, t_coord px);
@@ -205,9 +186,6 @@ double		vector_denom(t_coord n, t_coord v);
 double		time_inter_pl(t_ray *ray, t_object *pl);
 void		put_image(t_prog *prog, t_viewport *view, \
 	char *buff, double *time_caps);
-void		old_put_image(t_prog *prog);
-
-/************** Light *****************/
 
 t_color		get_ambient_intensity(t_prog *prog, t_object *sp);
 double		get_scalar(t_object *obj, t_coord *n, \

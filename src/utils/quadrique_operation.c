@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   quadrique_operation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   by: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
+/*   By: atolojan <atolojan@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   created: 2025/03/03 15:54:25 by maandria          #+#    #+#             */
-/*   Updated: 2025/03/18 14:25:31 by maandria         ###   ########.fr       */
+/*   Created: 2025/05/17 22:17:18 by atolojan          #+#    #+#             */
+/*   Updated: 2025/05/17 22:17:21 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-/*********** calcul du discriminant Delta **********************/
 double	op_delta(double a, double b, double c)
 {
 	double	delta;
@@ -21,7 +20,6 @@ double	op_delta(double a, double b, double c)
 	return (delta);
 }
 
-/********** calcul des solutions possible de t *************/
 double	op_solution_quad(double a, double b, double c)
 {
 	double	result;

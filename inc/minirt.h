@@ -68,7 +68,7 @@ typedef struct s_camunit
 	t_coord		c_right;
 }	t_camunit;
 
-typedef struct	s_viewport
+typedef struct s_viewport
 {
 	double		length;
 	double		width;
@@ -92,7 +92,6 @@ typedef struct s_prog
 	double		pixel;
 }	t_prog;
 
-
 typedef struct s_ray
 {
 	t_coord	ro;
@@ -102,11 +101,10 @@ typedef struct s_ray
 
 typedef struct s_quadric
 {
-	double	A;
-	double	B;
-	double	C;
+	double	a;
+	double	b;
+	double	c;
 }	t_quadric;
-
 
 /************ tools *************/
 t_object	*init_object(void);
@@ -134,7 +132,8 @@ int			check_element(t_list **list);
 void		set_nbr_element(int nbr[], t_object *obj);
 int			init_prog(t_prog *prog);
 void		set_intensity(t_prog *prog, t_coord *rt, double *xy, char *buff);
-void		set_intensity_caps(t_prog *prog, t_coord *rt, double *xy, char *buff);
+void		set_intensity_caps(t_prog *prog, t_coord *rt, \
+	double *xy, char *buff);
 double		get_pixel_color(t_prog *prog, t_object *obj, \
 	t_coord *norm, t_coord *rray);
 
@@ -187,8 +186,9 @@ t_coord		op_vector_substraction(t_coord u, t_coord v);
 t_coord		op_ortgl_projec_prll(t_coord u, t_coord v);
 t_coord		ray_launch(t_coord u, t_coord v, double t);
 t_coord		op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index);
-t_coord		op_position_px(t_coord pos_cam,t_viewport view, t_camunit cam, double *xy);
-t_ray		op_quadrique_value_sp(t_coord px,t_prog *prog, t_object *sp);
+t_coord		op_position_px(t_coord pos_cam, t_viewport view, \
+	t_camunit cam, double *xy);
+t_ray		op_quadrique_value_sp(t_coord px, t_prog *prog, t_object *sp);
 t_ray		op_quadrique_value_cy(t_coord px, t_prog *prog, t_object *cy);
 t_quadric	op_values_polynome(t_ray ray, double rayon);
 t_coord		get_extremity_upper(t_object *obj);
@@ -197,19 +197,22 @@ double		inter_cy_caps(t_object *cy, t_ray *ray);
 
 /************** Operation Plane *****************/
 
-t_ray		op_quadrique_value_pl(t_coord px,t_prog *prog);
+t_ray		op_quadrique_value_pl(t_coord px, t_prog *prog);
 t_orient	take_orient_id(t_prog *prog, char *str);
 double		vector_numer(t_coord n, t_coord rp, t_coord px);
 double		vector_denom(t_coord n, t_coord v);
 double		time_inter_pl(t_ray *ray, t_object *pl);
-void		put_image(t_prog *prog, t_viewport *view, char *buff, double *time_caps);
+void		put_image(t_prog *prog, t_viewport *view, \
+	char *buff, double *time_caps);
 void		old_put_image(t_prog *prog);
 
 /************** Light *****************/
 
 t_color		get_ambient_intensity(t_prog *prog, t_object *sp);
-double		get_scalar(t_object *obj, t_coord *n, t_coord *rray, t_object *light);
-double		get_diffuse_color(t_color *ambient, double *scalar, t_object *obj, t_object *light);
+double		get_scalar(t_object *obj, t_coord *n, \
+	t_coord *rray, t_object *light);
+double		get_diffuse_color(t_color *ambient, double *scalar, \
+	t_object *obj, t_object *light);
 t_coord		normalize_sphere(t_coord *ro, t_object *obj);
 t_coord		set_cylinder_normal(t_coord *rt, t_object *obj);
 
@@ -220,7 +223,8 @@ void		set_render(t_prog *prog);
 t_list		*all_shape(t_prog *prog);
 t_object	*get_closest(t_prog *prog, t_viewport *view, double *xy);
 double		set_shape_time(t_coord *px_position, t_prog *prog, t_object *obj);
-int			in_shadow(t_prog *prog, t_object *light, t_coord *rt, t_coord *normal);
+int			in_shadow(t_prog *prog, t_object *light, \
+	t_coord *rt, t_coord *normal);
 double		get_time_caps(t_prog *prog, t_coord *rt, t_ray *ray, double *time);
 double		set_cy_time(t_ray *ray, t_prog *prog, t_object *obj);
 

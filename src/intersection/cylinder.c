@@ -36,12 +36,12 @@ t_quadric	op_values_polynome_cy(t_coord *px, t_coord *axis_cy, \
 	c = get_extremity_upper(cy);
 	x = op_vector_substraction(*px, c);
 	tmp = op_dot_prod(*dir, *dir);
-	result.A = tmp - (op_dot_prod(*dir, *axis_cy) * \
+	result.a = tmp - (op_dot_prod(*dir, *axis_cy) * \
 		op_dot_prod(*dir, *axis_cy));
 	tmp = op_dot_prod(*dir, *axis_cy) * op_dot_prod(x, *axis_cy);
-	result.B = 2 * (op_dot_prod(*dir, x) - tmp);
+	result.b = 2 * (op_dot_prod(*dir, x) - tmp);
 	tmp = op_dot_prod(x, *axis_cy) * op_dot_prod(x, *axis_cy);
-	result.C = op_dot_prod(x, x) - tmp - ray * ray;
+	result.c = op_dot_prod(x, x) - tmp - ray * ray;
 	return (result);
 }
 
@@ -70,6 +70,6 @@ double	inter_cy(t_ray *ray, t_object *cy)
 	t = INFINITY;
 	axis_cy = orient2coord(cy->orient);
 	value = op_values_polynome_cy(&(ray->ro), &axis_cy, &(ray->v), cy);
-	t = op_solution_quad(value.A, value.B, value.C);
+	t = op_solution_quad(value.a, value.b, value.c);
 	return (t);
 }

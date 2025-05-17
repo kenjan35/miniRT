@@ -3,9 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   quadrique_operation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
+/*   by: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/03 15:54:25 by maandria          #+#    #+#             */
+/*   created: 2025/03/03 15:54:25 by maandria          #+#    #+#             */
 /*   Updated: 2025/03/18 14:25:31 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -13,31 +13,31 @@
 #include "../../inc/minirt.h"
 
 /*********** calcul du discriminant Delta **********************/
-double	op_delta(double A, double B, double C)
+double	op_delta(double a, double b, double c)
 {
 	double	delta;
 
-	delta = (B * B) - (4 * (A * C));
+	delta = (b * b) - (4 * (a * c));
 	return (delta);
 }
 
 /********** calcul des solutions possible de t *************/
-double	op_solution_quad(double A, double B, double C)
+double	op_solution_quad(double a, double b, double c)
 {
 	double	result;
 	double	delta;
 	double	tmp;
 
-	delta = op_delta(A, B, C);
+	delta = op_delta(a, b, c);
 	result = -1;
 	if (delta < 0)
 		return (-1);
 	else if (delta == 0)
-		result = (-1 * B) / (2 * A);
+		result = (-1 * b) / (2 * a);
 	else if (delta > 0)
 	{
-		result = ((-1 * B) - sqrtf(delta)) / (2 * A);
-		tmp = ((-1 * B) + sqrtf(delta)) / (2 * A);
+		result = ((-1 * b) - sqrtf(delta)) / (2 * a);
+		tmp = ((-1 * b) + sqrtf(delta)) / (2 * a);
 		if (result < 0 && tmp > 0)
 			result = tmp;
 		else if (tmp < result && tmp > 0)

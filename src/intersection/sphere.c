@@ -32,9 +32,9 @@ t_quadric	op_values_polynome(t_ray ray, double rayon)
 {
 	t_quadric	result;
 
-	result.A = op_dot_prod(ray.v, ray.v);
-	result.B = 2 * op_dot_prod(ray.rso, ray.v);
-	result.C = op_dot_prod(ray.rso, ray.rso) - (rayon * rayon);
+	result.a = op_dot_prod(ray.v, ray.v);
+	result.b = 2 * op_dot_prod(ray.rso, ray.v);
+	result.c = op_dot_prod(ray.rso, ray.rso) - (rayon * rayon);
 	return (result);
 }
 
@@ -49,6 +49,6 @@ double	inter_sp(t_ray *ray, t_object *sp)
 		return (t);
 	radius = (sp->size[0] / 2);
 	value = op_values_polynome(*ray, radius);
-	t = op_solution_quad(value.A, value.B, value.C);
+	t = op_solution_quad(value.a, value.b, value.c);
 	return (t);
 }

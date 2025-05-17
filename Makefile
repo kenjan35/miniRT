@@ -20,7 +20,7 @@ SRC_IMAGE = $(addprefix src/image/, put_image.c ray_shape.c image_utils.c)
 
 SRC_UTILS = $(addprefix src/utils/, open_file.c archer_atof.c free_array.c print_error.c math_utils.c math_operation.c quadrique_operation.c build_objects.c)
 
-SRC_INTER = $(addprefix src/intersection/, intersection.c sphere.c cylinder.c plane.c plane_operation.c)
+SRC_INTER = $(addprefix src/intersection/, intersection.c sphere.c cylinder.c cylinder_caps.c plane.c plane_operation.c)
 
 OBJ_SETUP = $(SRC_SETUP:%.c=$(OBJ_DIR)%.o)
 

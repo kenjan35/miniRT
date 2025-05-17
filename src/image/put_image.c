@@ -97,7 +97,7 @@ void	put_image(t_prog *prog, t_viewport *view, char *buff, double *time_caps)
 		}
 		time_caps[2] += prog->pixel;
 	}
-	mlx_put_image_to_window(prog->mlx, prog->mlx_win, prog->img, 0, 0);
+	mlx_put_image_to_window(prog->mlx, prog->mlx_win, prog->img, -1, 0);
 }
 
 void	set_render(t_prog *prog)

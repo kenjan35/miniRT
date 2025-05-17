@@ -41,27 +41,23 @@ double	set_shadow_time(t_coord *org, t_coord *sdw, t_prog *prog, t_object *obj)
 
 int	in_shadow(t_prog *prog, t_object *light, t_coord *rt, t_coord *normal)
 {
-	t_coord		shad;
+	t_coord		shad[2];
 	t_coord		origin;
 	double		time;
 	t_object	*obj;
 	t_list		*tmp;
-	double		norm;
 
 	origin = set_origin(rt, normal);
-	shad = op_vector_substraction(*(light->coord), *rt);
-	norm = op_norm(shad);
-	shad.x /= norm;
-	shad.y /= norm;
-	shad.z /= norm;
+	shad[0] = op_vector_substraction(*(light->coord), *rt);
+	shad[1] = op_normalize(shad[0]);
 	tmp = prog->shapes;
 	while (tmp)
 	{
 		obj = (t_object *)(tmp->content);
 		if (obj->num != prog->current_obj->num)
 		{
-			time = set_shadow_time(&origin, &shad, prog, obj);
-			if (time > 0 && time < norm)
+			time = set_shadow_time(&origin, &shad[1], prog, obj);
+			if (time > 0 && time < op_norm(shad[0]))
 				return (1);
 		}
 		tmp = tmp->next;

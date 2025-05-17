@@ -6,19 +6,17 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 14:39:36 by maandria          #+#    #+#             */
-/*   Updated: 2025/05/16 14:45:41 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/17 23:06:35 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-/************* produit scalaire ******************/
 double	op_dot_prod(t_coord u, t_coord v)
 {
 	return ((u.x * v.x) + (u.y * v.y) + (u.z * v.z));
 }
 
-/************* usage des vecteurs pixels unitaires ******************/
 t_coord	op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index)
 {
 	t_coord	result;
@@ -48,7 +46,6 @@ t_coord	op_vpixel_unit(t_viewport view, t_coord u, t_coord v, int index)
 	return (result);
 }
 
-/************* usage de vecteur ******************/
 t_coord	op_vector_use(t_coord u, t_coord v)
 {
 	t_coord	result;

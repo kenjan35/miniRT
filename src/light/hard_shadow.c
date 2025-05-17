@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:33:27 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/17 20:34:43 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/18 02:40:39 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double	set_shadow_time(t_coord *org, t_coord *sdw, t_prog *prog, t_object *obj)
 	double	time;
 	t_ray	ray;
 
-	ray = op_quadrique_value_sp(*org, prog, obj);
+	ray = op_quadric_value_sp(*org, prog, obj);
 	ray.v = *sdw;
 	time = INFINITY;
 	if (obj->id[1] == 'l')

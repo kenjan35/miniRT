@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 14:38:41 by maandria          #+#    #+#             */
-/*   Updated: 2025/05/17 19:28:54 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/18 02:40:39 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_quadric	op_values_polynome_cy(t_coord *px, t_coord *axis_cy, \
 	return (result);
 }
 
-t_ray	op_quadrique_value_cy(t_coord px, t_prog *prog, t_object *cy)
+t_ray	op_quadric_value_cy(t_coord px, t_prog *prog, t_object *cy)
 {
 	t_ray		result;
 	t_coord		rs;

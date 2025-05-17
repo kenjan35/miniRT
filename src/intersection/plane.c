@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 13:22:19 by atolojan          #+#    #+#             */
-/*   Updated: 2025/03/21 10:23:04 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/18 02:40:39 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minirt.h"
 
-t_ray	op_quadrique_value_pl(t_coord px, t_prog *prog)
+t_ray	op_quadric_value_pl(t_coord px, t_prog *prog)
 {
 	t_ray	result;
 	t_prog	*tmp;

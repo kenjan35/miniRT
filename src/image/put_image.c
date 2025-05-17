@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atolojan <atolojan@student.42antananarivo  +#+  +:+       +#+        */
+/*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 10:01:11 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/14 14:59:51 by atolojan         ###   ########.fr       */
+/*   Updated: 2025/05/18 02:40:39 by maandria         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	put_image(t_prog *prog, t_viewport *view, char *buff, double *time_caps)
 			obj = get_closest(prog, view, &time_caps[1]);
 			if (!obj)
 				continue ;
-			ray = op_quadrique_value_sp(prog->px_pos, prog, obj);
+			ray = op_quadric_value_sp(prog->px_pos, prog, obj);
 			rt = ray_launch(ray.ro, ray.v, obj->time);
 			if (obj->id[1] == 'y')
 				time_caps[0] = get_time_caps(prog, &rt, &ray, &(obj->time));

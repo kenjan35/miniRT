@@ -6,7 +6,7 @@
 /*   By: maandria <maandria@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 14:33:27 by atolojan          #+#    #+#             */
-/*   Updated: 2025/05/17 09:19:44 by maandria         ###   ########.fr       */
+/*   Updated: 2025/05/17 20:34:43 by atolojan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,14 @@ int	in_shadow(t_prog *prog, t_object *light, t_coord *rt, t_coord *normal)
 	double		time;
 	t_object	*obj;
 	t_list		*tmp;
+	double		norm;
 
 	origin = set_origin(rt, normal);
 	shad = op_vector_substraction(*(light->coord), *rt);
-	shad.x /= op_norm(shad);
-	shad.y /= op_norm(shad);
-	shad.z /= op_norm(shad);
+	norm = op_norm(shad);
+	shad.x /= norm;
+	shad.y /= norm;
+	shad.z /= norm;
 	tmp = prog->shapes;
 	while (tmp)
 	{
@@ -59,7 +61,7 @@ int	in_shadow(t_prog *prog, t_object *light, t_coord *rt, t_coord *normal)
 		if (obj->num != prog->current_obj->num)
 		{
 			time = set_shadow_time(&origin, &shad, prog, obj);
-			if (time > 0 && time < op_norm(shad))
+			if (time > 0 && time < norm)
 				return (1);
 		}
 		tmp = tmp->next;
